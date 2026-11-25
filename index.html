@@ -1,3 +1,827 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Ride guide - coming soon</title></head>
-<body style="font-family:system-ui;padding:2rem"><h1>Ride guide</h1><p>Being built. Check back shortly.</p></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#000000">
+<title>Andy's Ride Guide</title>
+<meta name="description" content="An unofficial guide to every Walt Disney World ride, ranked from gentlest to wildest for a rider who would rather skip the spinning and the heights.">
+<meta property="og:title" content="Andy's Ride Guide">
+<meta property="og:description" content="Every Walt Disney World ride, gentlest to wildest, with live waits, a map and a one-pager for each.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pjones7-del.github.io/ride-guide/">
+<meta property="og:image" content="https://pjones7-del.github.io/ride-guide/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preload" href="fonts/barlow-condensed-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:"Barlow";font-weight:400;font-style:normal;font-display:swap;src:url(fonts/barlow-400.woff2) format("woff2")}
+@font-face{font-family:"Barlow";font-weight:600;font-style:normal;font-display:swap;src:url(fonts/barlow-600.woff2) format("woff2")}
+@font-face{font-family:"Barlow Condensed";font-weight:600;font-style:normal;font-display:swap;src:url(fonts/barlow-condensed-600.woff2) format("woff2")}
+@font-face{font-family:"Barlow Condensed";font-weight:700;font-style:normal;font-display:swap;src:url(fonts/barlow-condensed-700.woff2) format("woff2")}
+:root{
+--paper:#F1F4F2; --card:#fff; --ink:#111416; --ink2:#4B555A; --rule:#CBD3CF; --soft:#E3E9E5;
+--l1:#1F8A4C; --l2:#1F6FB8; --l3:#F2C230; --l4:#E8742A; --l5:#C62828;
+--body:"Barlow",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+--cond:"Barlow Condensed","Arial Narrow","Roboto Condensed",system-ui,sans-serif;
+--bar:52px; --tabs:60px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:auto}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.5 var(--body);padding-bottom:calc(var(--tabs) + env(safe-area-inset-bottom))}
+h1,h2,h3,h4{font-family:var(--cond);font-weight:700;line-height:1.02;margin:0;letter-spacing:.005em}
+p{margin:0 0 .8em}
+a{color:inherit;text-underline-offset:.15em}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid #000;outline-offset:2px;border-radius:2px}
+.band :focus-visible,.hero :focus-visible,.tabs :focus-visible,.sheetbar :focus-visible{outline-color:#fff}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+.band{position:sticky;top:0;z-index:30;background:#000;color:#fff;height:var(--bar);display:flex;align-items:center;gap:12px;padding:0 16px}
+.band .title{font:700 23px/1 var(--cond);letter-spacing:.01em;text-decoration:none;white-space:nowrap}
+.band .live{margin-left:auto;font:400 13px/1.2 var(--body);color:#C9D2CD;text-align:right;background:none;border:0;padding:6px 0;display:flex;align-items:center;gap:7px}
+.dot{width:9px;height:9px;border-radius:50%;background:#6B7570;flex:none}
+.dot.on{background:#43D07F}
+.dot.off{background:#E8742A}
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:40;background:#000;display:flex;padding-bottom:env(safe-area-inset-bottom);border-top:1px solid #2a2a2a}
+.tabs button{flex:1;height:var(--tabs);background:none;border:0;color:#B9C2BD;font:600 14px/1 var(--cond);letter-spacing:.03em;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.tabs svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tabs button[aria-current="page"]{color:#fff;box-shadow:inset 0 3px 0 var(--l3)}
+.hero{background:#000;color:#fff;padding:22px 0 26px}
+.hero h1{font-size:clamp(46px,13.5vw,84px);line-height:.9;letter-spacing:-.005em;margin:0 0 14px}
+.hero p{font-size:18px;line-height:1.42;max-width:34em;color:#E7ECE9;margin-bottom:22px}
+.legend{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:0;padding:0;list-style:none}
+.legend li{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.legend svg{width:clamp(40px,12vw,58px);height:auto}
+.legend b{font:600 clamp(14px,3.9vw,18px)/1.05 var(--cond);letter-spacing:.01em}
+.legend span{display:none;font-size:13px;line-height:1.3;color:#C9D2CD}
+.hero .note{margin:20px 0 0;font-size:15px;color:#C9D2CD;max-width:36em}
+.filters{position:sticky;top:var(--bar);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.filters .wrap{display:flex;flex-direction:column;gap:8px;padding-top:10px;padding-bottom:10px}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1.5px solid var(--ink);background:transparent;border-radius:999px;padding:7px 13px;font:600 16px/1 var(--cond);letter-spacing:.01em;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff}
+.opts{display:flex;align-items:center;gap:14px;font-size:14.5px;color:var(--ink2)}
+.opts label{display:flex;align-items:center;gap:6px}
+.opts input[type=checkbox]{width:18px;height:18px;accent-color:#000;margin:0}
+.opts select{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--rule);border-radius:4px;padding:4px 6px}
+.opts .count{margin-left:auto;font-variant-numeric:tabular-nums}
+.lvlhead{display:flex;align-items:center;gap:12px;padding:22px 0 10px}
+.lvlhead svg{width:34px;height:34px;flex:none}
+.lvlhead h2{font-size:28px}
+.lvlhead p{margin:2px 0 0;font-size:15px;line-height:1.35;color:var(--ink2)}
+.rows{list-style:none;margin:0;padding:0;background:var(--card);border-top:1px solid var(--rule)}
+.rows li{border-bottom:1px solid var(--rule)}
+.row{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;width:100%;text-align:left;background:none;border:0;padding:11px 12px;min-height:68px}
+.row:active{background:var(--soft)}
+.row .sign{width:40px;height:40px}
+.row h3{font:600 21px/1.08 var(--cond);letter-spacing:.005em}
+.row .meta{font-size:13.5px;line-height:1.3;color:var(--ink2);margin-top:2px}
+.pips{display:flex;gap:10px;margin-top:6px;font:400 12.5px/1 var(--body);color:var(--ink2);align-items:center;white-space:nowrap}
+.pips span{display:inline-flex;align-items:center;gap:5px}
+.pip{display:inline-flex;gap:2px}
+.pip i{width:8px;height:7px;background:#D5DDD8;border-radius:1px}
+.pip i.f{background:var(--ink)}
+.pip i.h{background:linear-gradient(90deg,var(--ink) 50%,#D5DDD8 50%)}
+.wait{text-align:right;min-width:52px;font:700 26px/1 var(--cond);font-variant-numeric:tabular-nums}
+.wait small{display:block;font:400 12px/1.1 var(--body);color:var(--ink2);margin-top:2px}
+.wait.txt{font:600 14px/1.15 var(--cond);color:var(--ink2);max-width:64px}
+.row.closed h3,.row.closed .meta{color:#6C7579}
+.tape{margin:26px 0 0;border:0;padding:0}
+.tape i{display:block;height:12px;background:repeating-linear-gradient(-45deg,#000 0 12px,var(--l3) 12px 24px)}
+.tape p{margin:10px 0 0;font-size:15.5px;line-height:1.4}
+.tape b{font:700 22px/1 var(--cond);display:block;margin-bottom:3px}
+.empty{padding:28px 0;color:var(--ink2)}
+.foot{padding:28px 0 36px;font-size:14px;line-height:1.5;color:var(--ink2)}
+.sheet{position:fixed;inset:0;z-index:60;background:var(--paper);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.sheet[hidden]{display:none}
+.sheetbar{position:sticky;top:0;z-index:5;background:#000;color:#fff;height:var(--bar);display:flex;align-items:center;gap:8px;padding:0 8px}
+.sheetbar button{background:none;border:0;color:#fff;height:44px;min-width:44px;padding:0 10px;font:600 17px/1 var(--cond);display:flex;align-items:center;gap:6px}
+.sheetbar svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.sheetbar .sp{flex:1}
+.sheetbar .rank{font:600 16px/1 var(--cond);color:#C9D2CD;padding-right:8px}
+.op{max-width:760px;margin:0 auto;background:var(--card);padding-bottom:28px}
+.photo{position:relative;aspect-ratio:16/9;background:#1b1f21;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.photo.none{aspect-ratio:auto;height:14px;background:repeating-linear-gradient(-45deg,#000 0 12px,#1d2224 12px 24px)}
+.credit{font-size:12px;line-height:1.35;color:var(--ink2);padding:6px 16px 0}
+.op .pad{padding:0 16px}
+.lvl{display:flex;align-items:center;gap:12px;margin:16px 0 10px}
+.lvl svg{width:48px;height:48px;flex:none}
+.lvl b{font:700 24px/1 var(--cond);display:block}
+.lvl span{font-size:14px;color:var(--ink2);line-height:1.3;display:block;margin-top:3px}
+.op h2{font-size:clamp(34px,9.5vw,46px);line-height:.98;margin:2px 0 6px}
+.op .where{font-size:15px;color:var(--ink2);margin:0 0 12px}
+.status{display:flex;flex-wrap:wrap;gap:6px 8px;margin:0 0 14px}
+.tag{display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--ink);border-radius:4px;padding:4px 8px;font:600 15px/1.1 var(--cond);letter-spacing:.01em}
+.tag.solid{background:var(--ink);color:#fff}
+.tag.warn{border-color:var(--l5);color:#9E1B1B}
+.alert{border-left:6px solid var(--l4);background:#FFF3E6;padding:10px 12px;font-size:15.5px;line-height:1.4;margin:0 0 14px}
+.alert.closed{border-color:var(--l5);background:#FDECEC}
+.alert.info{border-color:var(--l2);background:#EAF2FB}
+.verdict{font:600 22px/1.25 var(--cond);margin:0 0 16px;letter-spacing:.003em}
+.meters{display:grid;gap:7px;margin:0 0 6px;padding:14px 0;border-top:2px solid var(--ink);border-bottom:1px solid var(--rule)}
+.meter{display:grid;grid-template-columns:122px 1fr 30px;align-items:center;gap:10px;font-size:15px}
+.meter .lab{font-weight:600}
+.meter.minor .lab{font-weight:400;color:var(--ink2)}
+.segs{display:grid;grid-template-columns:repeat(5,1fr);gap:3px}
+.segs i{height:12px;background:var(--soft);border-radius:2px}
+.segs i.f{background:var(--ink)}
+.segs i.h{background:linear-gradient(90deg,var(--ink) 50%,var(--soft) 50%)}
+.meter.minor .segs i{height:8px}
+.meter .val{text-align:right;font:600 17px/1 var(--cond);font-variant-numeric:tabular-nums}
+.driver{font-size:13.5px;color:var(--ink2);margin:6px 0 18px}
+.op h4{font-size:21px;margin:20px 0 6px}
+.op p{font-size:16.5px;line-height:1.5}
+.two{display:grid;gap:0 20px}
+.tips{margin:0;padding:0;list-style:none}
+.tips li{position:relative;padding:8px 0 8px 22px;border-top:1px solid var(--rule);font-size:16.5px;line-height:1.42}
+.tips li:first-child{border-top:0}
+.tips li::before{content:"";position:absolute;left:2px;top:17px;width:9px;height:9px;background:var(--ink);border-radius:50%}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;margin:0;border-top:1px solid var(--rule)}
+.facts div{padding:8px 0;border-bottom:1px solid var(--rule)}
+.facts dt{font-size:13px;color:var(--ink2);line-height:1.2}
+.facts dd{margin:2px 0 0;font:600 19px/1.15 var(--cond)}
+.facts dd small{font:400 12.5px/1.25 var(--body);color:var(--ink2);display:block;margin-top:2px}
+.gauge{margin:14px 0 2px}
+.gauge svg{width:100%;height:auto;display:block}
+.gauge text{font-family:var(--body);font-size:12px;fill:var(--ink2)}
+.gauge .bl{font-family:var(--cond);font-weight:600;font-size:15px;fill:var(--ink)}
+.small{font-size:13px;line-height:1.45;color:var(--ink2)}
+.flags{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 8px}
+.flags span{background:var(--soft);border-radius:3px;padding:3px 8px;font-size:14px}
+.swap{background:var(--soft);padding:12px 14px;margin:18px 0 0;font-size:16px;line-height:1.4}
+.swap b{font:700 18px/1 var(--cond);display:block;margin-bottom:4px}
+.opnav{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0 0}
+.opnav button{border:1.5px solid var(--ink);background:none;border-radius:4px;padding:10px 12px;text-align:left;font:600 17px/1.15 var(--cond);min-height:56px}
+.opnav button small{display:block;font:400 12.5px/1.2 var(--body);color:var(--ink2);margin-bottom:3px}
+.opnav button:last-child{text-align:right}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--ink);background:var(--ink);color:#fff;border-radius:4px;padding:10px 14px;font:600 17px/1 var(--cond);text-decoration:none}
+.btn.ghost{background:none;color:var(--ink)}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0}
+.mapwrap{position:relative;z-index:1}
+#map{height:58vh;min-height:320px;background:#dfe6e2;z-index:1}
+.mapbar{background:var(--paper);border-bottom:1px solid var(--rule);padding:10px 0}
+.locate{position:absolute;right:12px;bottom:26px;z-index:500;border:2px solid #000;background:#fff;border-radius:6px;padding:9px 12px;font:600 16px/1 var(--cond);box-shadow:0 1px 0 #000}
+.pin{background:none;border:0}
+.pin svg{width:34px;height:34px;filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.55));transform-origin:50% 50%}
+#map.far .pin svg{transform:scale(.8)}
+.pin.shut svg{opacity:.5}
+.leaflet-popup-content{margin:12px 14px;font:400 15px/1.35 var(--body);min-width:190px}
+.leaflet-popup-content h3{font:700 21px/1.05 var(--cond);margin:0 0 4px}
+.leaflet-popup-content .btn{margin-top:10px;padding:8px 12px;font-size:16px}
+.leaflet-container{font-family:var(--body)}
+.leaflet-container a.btn{color:#fff}
+.me{width:16px;height:16px;border-radius:50%;background:#1F6FB8;border:3px solid #fff;box-shadow:0 0 0 2px #1F6FB8}
+.key{padding:18px 16px 28px;max-width:760px;margin:0 auto}
+.key h2{font-size:28px}
+.key p{font-size:15px;line-height:1.4;color:var(--ink2);margin:4px 0 10px}
+.key .steps{background:var(--card);border-bottom:1px solid var(--rule)}
+.key .steps button{padding:8px 10px;grid-template-columns:34px 1fr auto}
+.key .steps small{font:600 15px/1 var(--cond);color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.key .steps small.q{font-weight:400;color:var(--ink2)}
+.sec{padding:26px 0 6px}
+.sec h2{font-size:32px;margin-bottom:8px}
+.sec>p,.sec .lead{font-size:16.5px;color:var(--ink);max-width:36em}
+.path{background:var(--card);border-top:2px solid var(--ink);padding:12px 12px 14px;margin:14px 0 0}
+.path h3{font-size:23px}
+.path p{font-size:15px;color:var(--ink2);margin:3px 0 10px}
+.steps{display:flex;flex-direction:column;gap:0;list-style:none;margin:0;padding:0}
+.steps li{border-top:1px solid var(--rule)}
+.steps button{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;width:100%;background:none;border:0;text-align:left;padding:8px 0;font:600 18.5px/1.1 var(--cond)}
+.steps svg{width:30px;height:30px}
+.steps small{font:400 13px/1 var(--body);color:var(--ink2)}
+.table{width:100%;border-collapse:collapse;background:var(--card);margin-top:12px;font-size:15.5px;line-height:1.35}
+.table th{font:600 14px/1.2 var(--cond);text-align:left;color:var(--ink2);padding:8px 10px;border-bottom:2px solid var(--ink);letter-spacing:.02em}
+.table td{padding:9px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+.table td:first-child{font:600 18px/1.15 var(--cond)}
+.table button.lk{background:none;border:0;padding:0;font:inherit;text-align:left;text-decoration:underline;text-underline-offset:.15em}
+.table .mini{font:400 12.5px/1.3 var(--body);color:var(--ink2);display:block;margin-top:3px}
+details{background:var(--card);border-top:1px solid var(--rule)}
+details:last-of-type{border-bottom:1px solid var(--rule)}
+summary{list-style:none;cursor:pointer;padding:12px;font:700 21px/1.1 var(--cond);display:flex;align-items:center;justify-content:space-between;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:400 26px/1 var(--body)}
+details[open] summary::after{content:"-"}
+details .in{padding:0 12px 12px}
+.brk{list-style:none;margin:0;padding:0}
+.brk li{padding:8px 0;border-top:1px solid var(--rule);font-size:15.5px;line-height:1.4}
+.brk b{font:600 18px/1.15 var(--cond);display:block}
+.brk small{color:var(--ink2);font-size:13px}
+.tr{background:var(--card);border-top:2px solid var(--ink);margin-top:14px}
+.tr .in{padding:12px}
+.tr h3{font-size:24px;display:flex;align-items:center;gap:10px}
+.tr h3 svg{width:30px;height:30px;flex:none}
+.tr img{width:100%;height:auto;aspect-ratio:16/8;object-fit:cover;display:block}
+.cols{display:grid;gap:14px}
+.card{background:var(--card);border-top:2px solid var(--ink);padding:12px 12px 6px}
+.card h3{font-size:23px;margin-bottom:6px}
+.rub{width:100%;border-collapse:collapse;font-size:14.5px;line-height:1.35;background:var(--card);margin-top:10px}
+.rub th,.rub td{border-bottom:1px solid var(--rule);padding:7px 8px;text-align:left;vertical-align:top}
+.rub th{font:600 16px/1.15 var(--cond)}
+.rub thead th{border-bottom:2px solid var(--ink);color:var(--ink2);font-size:14px}
+.rub td:first-child,.rub th:first-child{width:2.2em;text-align:center;font:700 17px/1.2 var(--cond)}
+.formula{background:#000;color:#fff;padding:14px 14px;font:600 20px/1.3 var(--cond);margin:12px 0;letter-spacing:.01em}
+.formula small{display:block;font:400 14px/1.4 var(--body);color:#C9D2CD;margin-top:6px}
+.matrix{display:grid;grid-template-columns:18px repeat(6,1fr);gap:2px;margin-top:12px}
+.matrix .ax{font:600 13.5px/1 var(--cond);color:var(--ink2);display:flex;align-items:center;justify-content:center}
+.matrix .cell{background:var(--card);min-height:44px;padding:3px;display:flex;flex-wrap:wrap;gap:2px;align-content:flex-start}
+.matrix .cell button{background:none;border:0;padding:0;width:23px;height:23px}
+.matrix .cell svg{width:23px;height:23px;display:block}
+.axl{font:600 14px/1 var(--cond);color:var(--ink2);margin-top:8px;text-align:center}
+.src{margin:8px 0 0;padding-left:1.1em;font-size:14.5px;line-height:1.45}
+.src li{margin-bottom:6px}
+.cred{font-size:13px;line-height:1.5;color:var(--ink2);columns:2;column-gap:20px;margin:8px 0 0;padding:0;list-style:none}
+.cred li{break-inside:avoid;margin-bottom:6px}
+#printroot{display:none}
+.pfoot{display:none}
+@media (max-width:359px){
+.pips{flex-direction:column;align-items:flex-start;gap:5px}
+.opts{gap:10px;font-size:13.5px}
+.opts label{white-space:nowrap}
+.opts .lb{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.opts select{max-width:124px}
+}
+@media (min-width:600px){
+.legend span{display:block}
+.two{grid-template-columns:1fr 1fr}
+.facts{grid-template-columns:repeat(3,1fr)}
+.cols{grid-template-columns:1fr 1fr}
+}
+@media (min-width:900px){
+body{padding-bottom:0;font-size:17.5px}
+.tabs{position:fixed;top:0;bottom:auto;left:auto;right:150px;height:var(--bar);border:0;background:none;z-index:45;width:auto}
+.tabs button{flex-direction:row;height:var(--bar);padding:0 16px;font-size:17px;gap:8px}
+.tabs button[aria-current="page"]{box-shadow:inset 0 -4px 0 var(--l3)}
+.wrap{max-width:820px}
+.sheet{left:auto;top:var(--bar);width:min(560px,46vw);border-left:1px solid #000;box-shadow:-18px 0 40px rgba(0,0,0,.18)}
+.sheetbar{background:var(--paper);color:var(--ink);border-bottom:1px solid var(--rule)}
+.sheetbar button{color:var(--ink)}
+.sheetbar .rank{color:var(--ink2)}
+.sheetbar :focus-visible{outline-color:#000}
+body.has-sheet #view{margin-right:min(560px,46vw)}
+.maplay{display:grid;grid-template-columns:minmax(0,1fr) 380px}
+#map{height:calc(100vh - var(--bar) - 58px)}
+.key{height:calc(100vh - var(--bar) - 58px);overflow-y:auto;margin:0;padding:16px 16px 24px;border-left:1px solid var(--rule)}
+.hero{padding:40px 0 40px}
+}
+@media (prefers-reduced-motion:no-preference){
+.sheet:not([hidden]){animation:in .18s ease-out}
+@keyframes in{from{transform:translateY(14px);opacity:0}to{transform:none;opacity:1}}
+}
+@media print{
+@page{margin:9mm 11mm}
+html,body{background:#fff}
+body{padding:0;font-size:10pt}
+.band,.tabs,.filters,.mapbar,.sheetbar,.opnav,.links,.locate,.sheet{display:none!important}
+body.printing #view{display:none!important}
+body.has-sheet #view{margin-right:0}
+#printroot{display:block}
+.op{max-width:none;padding:0;break-after:page;page-break-after:always}
+.op:last-child{break-after:auto;page-break-after:auto}
+.op .pad{padding:0}
+.photo{aspect-ratio:auto;height:33mm}
+.photo.none{height:5mm}
+.credit{padding:2pt 0 0;font-size:7pt}
+.lvl{margin:7pt 0 3pt;gap:8pt}
+.lvl svg{width:32pt;height:32pt}
+.lvl b{font-size:15pt}
+.lvl span{font-size:8.5pt;margin-top:1pt}
+.op h2{font-size:25pt;margin:0 0 2pt}
+.op .where{font-size:9pt;margin:0 0 5pt}
+.alert{font-size:9pt;padding:4pt 7pt;margin:0 0 6pt;border-left-width:4pt}
+.verdict{font-size:12.5pt;line-height:1.2;margin:0 0 7pt}
+.meters{padding:6pt 0;gap:3pt;margin:0 0 3pt}
+.meter{font-size:9pt;grid-template-columns:108pt 1fr 22pt}
+.meter .val{font-size:10.5pt}
+.segs i{height:7pt}
+.meter.minor .segs i{height:5pt}
+.driver{font-size:8pt;margin:3pt 0 6pt}
+.op h4{font-size:12.5pt;margin:6.5pt 0 2pt;break-after:avoid}
+.op p,.tips li{font-size:9.5pt;line-height:1.34}
+.op p{margin:0 0 3pt}
+.tips li{padding:2.5pt 0 2.5pt 13pt;break-inside:avoid}
+.tips li::before{top:6.5pt;width:5pt;height:5pt;left:1pt}
+.two{grid-template-columns:1fr 1fr}
+.swap{padding:5pt 8pt;margin:7pt 0 0;font-size:9.5pt;break-inside:avoid}
+.swap b{font-size:11pt;margin-bottom:1pt}
+.lower{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr;gap:0 18pt;align-items:start}
+.lower>.lcol{grid-column:1;grid-row:1}
+.lower>.lf{grid-column:1;grid-row:2}
+.lower>.nums{grid-column:2;grid-row:1 / span 2}
+.gauge{margin:4pt 0 0}
+.facts{grid-template-columns:repeat(3,1fr);gap:0 10pt}
+.facts div{padding:2pt 0}
+.facts dt{font-size:7.5pt}
+.facts dd{font-size:11.5pt;margin-top:1pt}
+.facts dd small{font-size:7pt}
+.small{font-size:7.5pt;line-height:1.35}
+.op p.small{font-size:7.5pt;margin:3pt 0 0}
+.flags{gap:4pt;margin:3pt 0 3pt}
+.flags span{font-size:8.5pt;padding:1.5pt 6pt}
+.op p.pfoot{display:block!important;margin:7pt 0 0;padding-top:3pt;border-top:1pt solid #000;font-size:7.5pt;color:#333}
+.alert,.swap,.flags span,.segs i,.pip i,.photo,.formula,.tips li::before{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.hero{background:none;color:#000;padding:0 0 8pt}
+.hero h1{font-size:30pt}
+.hero p,.hero .note,.legend span{color:#333}
+.row{break-inside:avoid}
+#map{height:150mm}
+a{text-decoration:none}
+}</style>
+</head>
+<body>
+<header class="band">
+  <a class="title" href="#/rides">Andy's Ride Guide</a>
+  <button class="live" id="livebtn" aria-label="Refresh live wait times"><span class="dot"></span><span>Loading live waits</span></button>
+</header>
+<main id="view"></main>
+<nav class="tabs" id="tabs" aria-label="Sections"></nav>
+<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-label="Ride one-pager">
+  <div class="sheetbar">
+    <button id="sheetback"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Back</button>
+    <span class="sp"></span><span class="rank" id="sheetrank"></span>
+  </div>
+  <div id="sheetbody"></div>
+</div>
+<div id="printroot"></div>
+<noscript><p style="padding:20px">This guide needs JavaScript turned on.</p></noscript>
+<script>window.RG={"built":"2026-11-25","rides":[{"slug":"small-world","name":"\"it's a small world\"","park":"mk","land":"Fantasyland","kind":"Boat ride","ids":["f5aad2d4-a419-4384-bd9a-42f86385c750"],"alias":["small world"],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/its-a-small-world/","lat":28.420482,"lng":-81.582039,"r":[1,0,0,1,0],"score":17.7,"level":1,"hreq":0,"flags":["scent","lighting","loud"],"restraint":"N/A","time":"10 min","tags":"Slow Rides","health":false,"expect":false,"rs":false,"v":"A slow indoor boat float. The only risk is the song getting stuck in your head.","f":"Boats drift through bright rooms of singing dolls for about ten minutes. No drops, no dark stretches, no surprises.","mo":"Smooth and slow. The boat barely rocks.","ht":"Water level the whole way.","tips":["A good first ride of the day, or a cool-down after anything bigger."],"swap":null,"st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/small-world.jpg","w":840,"h":630,"by":"Freddo","lic":"CC BY-SA 4.0","licurl":"https://creativecommons.org/licenses/by-sa/4.0","page":"https://commons.wikimedia.org/wiki/File:It%27s_a_Small_World_-_Magic_Kingdom6.jpg"},"rank":1},{"slug":"wildlife-express","name":"Wildlife Express Train","park":"ak","land":"Africa","kind":"Train","ids":["4f391f0e-52be-4f9d-99d6-b3ae0373b43c"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/animal-kingdom/wildlife-express-train/","lat":28.35981,"lng":-81.591418,"r":[1,0,0,1,0],"score":17.7,"level":1,"hreq":0,"flags":["loud"],"restraint":"N/A","time":"10 min","tags":"Slow Rides","health":false,"expect":false,"rs":false,"v":"A short train to the animal care area. Seats face sideways.","f":"An open-air train makes the short trip to Rafiki's Planet Watch, where there are animal exhibits and a petting yard. Disney lists the ride at 10 minutes.","mo":"Slow. All seats face out the side rather than forward.","ht":"None.","tips":["If riding sideways bothers him, look toward the front of the train."],"swap":null,"st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/wildlife-express.jpg","w":840,"h":630,"by":"mliu92","lic":"CC BY-SA 2.0","licurl":"https://creativecommons.org/licenses/by-sa/2.0","page":"https://commons.wikimedia.org/wiki/File:Wildlife_Express_Train_02594_at_Conservation_Station.jpg"},"rank":2},{"slug":"gran-fiesta","name":"Gran Fiesta Tour Starring The Three Caballeros","park":"ep","land":"World Showcase: Mexico","kind":"Boat ride","ids":["22f48b73-01df-460e-8969-9eb2b4ae836c"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/epcot/gran-fiesta-tour-starring-three-caballeros/","lat":28.371649,"lng":-81.547368,"r":[1,0,0,1,0.5],"score":18.0,"level":1,"hreq":0,"flags":["scent","lighting","loud"],"restraint":"N/A","time":"8 min","tags":"Slow Rides","health":false,"expect":false,"rs":false,"v":"A calm indoor boat ride inside the Mexico pyramid.","f":"Boats drift past film screens and dancing figures for about eight minutes. Dim, cool and quiet.","mo":"Slow and smooth.","ht":"None.","tips":["A good midday break from heat and noise."],"swap":null,"st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/gran-fiesta.jpg","w":840,"h":631,"by":"Benjamin D. Esham (bdesham)","lic":"CC BY-SA 4.0","licurl":"https://creativecommons.org/licenses/by-sa/4.0","page":"https://commons.wikimedia.org/wiki/File:Mexico_pavilion_at_Epcot.jpg"},"rank":3},{"slug":"living-land","name":"Living with the Land","park":"ep","land":"World Nature","kind":"Boat ride","ids":["8f353879-d6ac-4211-9352-4029efb47c18"],"alias":["living with the land"],"url":"https://disneyworld.disney.go.com/attractions/epcot/living-with-the-land/","lat":28.374245,"lng":-81.552301,"r":[1,0,0,1,0.5],"score":18.0,"level":1,"hreq":0,"flags":["scent","lighting","loud"],"restraint":"N/A","time":"14 min","tags":"Slow Rides","health":false,"expect":false,"rs":false,"v":"A quiet boat tour through working greenhouses. As calm as it gets.","f":"A slow boat passes a short storm scene, then drifts through bright greenhouses and fish tanks for about 14 minutes.","mo":"Slow and smooth.","ht":"None.","tips":["Right next to Soarin'. A good place for him to wait if others ride that."],"swap":null,"st":{},"alert":["info","Running with holiday lights as Glimmering Greenhouses from November 27, 2026 to January 6, 2027."],"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/living-land.jpg","w":840,"h":560,"by":"Michael Rivera","lic":"CC BY-SA 4.0","licurl":"https://creativecommons.org/licenses/by-sa/4.0","page":"https://commons.wikimedia.org/wiki/File:Living_with_the_Land_36.jpg"},"rank":4},{"slug":"railroad","name":"Walt Disney World Railroad","park":"mk","land":"Main Street / Fantasyland","kind":"Train","ids":["e39b831b-7731-49bb-815b-289b4f49a9fd","e39b831b-7731-49bb-815b-289b4f49a9fd","e40ac396-cbac-43f4-8752-764ed60ccceb"],"alias":["walt disney world railroad"],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/walt-disney-world-railroad-fantasyland/","lat":28.416543,"lng":-81.581204,"r":[1,0,0,1,0.5],"score":18.0,"level":1,"hreq":0,"flags":["scent","loud","dark","bumpy"],"restraint":"N/A","time":"Modified Route: 15 min","tags":"Slow Rides","health":false,"expect":false,"rs":false,"v":"A real steam train. Sit, rest, watch the park go by.","f":"An open-sided steam train with bench seats. During the Magic Kingdom expansion it runs only as a shuttle between the Main Street and Fantasyland stations.","mo":"Slow and steady, about 10 mph.","ht":"None.","tips":["A good reset between bigger rides.","The whistle is loud. Sit farther from the engine if that matters."],"swap":null,"st":{"sp":[10,"Wikipedia"]},"alert":["info","Shuttle service only between Main Street and Fantasyland. The Frontierland station is closed for the park expansion."],"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/railroad.jpg","w":840,"h":630,"by":"Alex McLeod","lic":"CC BY-SA 2.0","licurl":"https://creativecommons.org/licenses/by-sa/2.0","page":"https://commons.wikimedia.org/wiki/File:Walt_Disney_World_Railroad_No4.jpg"},"rank":5},{"slug":"jungle-cruise","name":"Jungle Cruise","park":"mk","land":"Adventureland","kind":"Boat ride","ids":["796b0a25-c51e-456e-9bb8-50a324e301b3"],"alias":["jungle cruise","jingle cruise"],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/jungle-cruise/","lat":28.417978,"lng":-81.583439,"r":[1,0,0,1,1],"score":18.3,"level":1,"hreq":0,"flags":["scent","loud","dark","wet"],"restraint":"N/A","time":"10 min","tags":"Slow Rides","health":false,"expect":false,"rs":false,"v":"An outdoor boat ride with a joke-telling skipper. Easy.","f":"A canopy boat putters past mechanical elephants, hippos and a ruined temple while the skipper delivers puns. One short stretch through the temple is dark.","mo":"Slow and steady, with a loud motor.","ht":"Water level.","tips":["Nothing to prepare for. A good one to ride together early in the day."],"swap":null,"st":{},"alert":["info","Running as the holiday Jingle Cruise through early January. Same ride, seasonal jokes."],"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/jungle-cruise.jpg","w":840,"h":630,"by":"DearCatastropheWaitress","lic":"CC BY 2.5","licurl":"https://creativecommons.org/licenses/by/2.5","page":"https://commons.wikimedia.org/wiki/File:Sankuru_Sadie.jpg"},"rank":6},{"slug":"navi","name":"Na'vi River Journey","park":"ak","land":"Pandora","kind":"Boat ride","ids":["7a5af3b7-9bc1-4962-92d0-3ea9c9ce35f0"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/animal-kingdom/navi-river-journey/","lat":28.355257,"lng":-81.591641,"r":[1,0,0,1,1],"score":18.3,"level":1,"hreq":0,"flags":["scent","lighting","dark"],"restraint":"N/A","time":"4 min","tags":"Slow Rides","health":false,"expect":false,"rs":true,"v":"A slow boat through a glowing night forest. Calm and beautiful.","f":"A small boat drifts through a dark cave full of glowing plants and animals for about four minutes. No drops, no surprises.","mo":"Slow and smooth.","ht":"None.","tips":["The best thing to do while others ride Flight of Passage next door."],"swap":null,"st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/navi.jpg","w":840,"h":558,"by":"mliu92","lic":"CC BY-SA 2.0","licurl":"https://creativecommons.org/licenses/by-sa/2.0","page":"https://commons.wikimedia.org/wiki/File:Na%27vi_River_Journey_-_Disney%27s_Animal_Kingdom_05.jpg"},"rank":7},{"slug":"zootopia","name":"Zootopia: Better Zoogether!","park":"ak","land":"Discovery Island","kind":"3D show","ids":["1b15c77b-0311-4171-8e59-7f38e6d60754"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/animal-kingdom/zootopia-better-zoogether/","lat":28.357488,"lng":-81.590118,"r":[1,0,0,0,2],"score":21.3,"level":2,"hreq":0,"flags":["scent","lighting","loud","dark","wet"],"restraint":"N/A","time":"10 min","tags":"Dark, Loud","health":false,"expect":false,"rs":false,"v":"A ten-minute 3D show inside the Tree of Life. Loud in spots, with a puff of water and confetti.","f":"A 3D film in a dark theater with a few in-theater effects. The seats do not move.","mo":"None. It is a film.","ht":"None.","tips":["Sit near the back if loud surprises are unwelcome."],"swap":null,"st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/zootopia.jpg","w":840,"h":840,"by":"Jedi94","lic":"CC BY-SA 4.0","licurl":"https://creativecommons.org/licenses/by-sa/4.0","page":"https://commons.wikimedia.org/wiki/File:Tree_of_Life_(square_crop).jpg"},"rank":8},{"slug":"carrousel","name":"Prince Charming Regal Carrousel","park":"mk","land":"Fantasyland","kind":"Carousel","ids":["273ddb8d-e7b5-4e34-8657-1113f49262a5"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/prince-charming-regal-carrousel/","lat":28.420169,"lng":-81.581255,"r":[1.5,0.5,0,1,0],"score":26.7,"level":2,"hreq":0,"flags":["loud"],"restraint":"Lap belt","time":"2 min","tags":"Slow Rides, Spinning","health":false,"expect":false,"rs":false,"v":"A classic carousel. Slow circles for two minutes.","f":"Antique horses go gently up and down as the platform turns. There is also a bench that does not move up and down.","mo":"Slow, constant turning. Fine for most, but circling is circling.","ht":"A horse's height.","tips":["Pick an outside horse and look outward at something far away.","The bench is there if the up-and-down is unwelcome."],"swap":null,"st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/carrousel.jpg","w":840,"h":630,"by":"Freddo","lic":"CC BY-SA 4.0","licurl":"https://creativecommons.org/licenses/by-sa/4.0","page":"https://commons.wikimedia.org/wiki/File:Cinderella%27s_Golden_Carousel.jpg"},"rank":9},{"slug":"buzz","name":"Buzz Lightyear's Space Ranger Spin","park":"mk","land":"Tomorrowland","kind":"Shooting dark ride","ids":["72c7343a-f7fb-4f66-95df-c91016de7338"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/buzz-lightyear-space-ranger-spin/","lat":28.418287,"lng":-81.579409,"r":[1.5,0,0,1,1],"score":26.8,"level":2,"hreq":0,"flags":["lighting","loud","dark"],"restraint":"Lap bar","time":"5 min","tags":"Slow Rides, Spinning","health":false,"expect":false,"rs":false,"v":"A slow shooting gallery. The car only spins if someone spins it.","f":"A slow-moving car glides past glowing cartoon targets while you score points with a handheld blaster. A joystick turns the car in a full circle, but only when you push it.","mo":"Gentle unless someone works the joystick hard.","ht":"Ground level, indoors.","tips":["Put him in charge of the joystick, so the car turns only when he wants it to.","If a scene of swirling lights feels odd, look down at the score screen in the car."],"swap":null,"st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/buzz.jpg","w":840,"h":630,"by":"Jeremy Thompson","lic":"CC BY 2.0","licurl":"https://creativecommons.org/licenses/by/2.0","page":"https://commons.wikimedia.org/wiki/File:Magic_Kingdom_171_(8209375869).jpg"},"rank":10},{"slug":"pooh","name":"The Many Adventures of Winnie the Pooh","park":"mk","land":"Fantasyland","kind":"Dark ride","ids":["0d94ad60-72f0-4551-83a6-ebaecdd89737"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/many-adventures-of-winnie-the-pooh/","lat":28.420212,"lng":-81.580266,"r":[1.5,0,0,1,1],"score":26.8,"level":2,"hreq":0,"flags":["lighting","loud","dark","bumpy"],"restraint":"Lap bar","time":"3 min","tags":"Slow Rides","health":false,"expect":false,"rs":false,"v":"A sweet, slow storybook ride. One scene bounces.","f":"A honey-pot car rolls through storybook scenes. In one, the car hops along for a few seconds. In another it sways as if floating in a flood.","mo":"Mostly smooth. The bounce is brief and gentle.","ht":"Ground level.","tips":["Mention the bouncing scene ahead of time, so it is fun instead of a surprise."],"swap":null,"st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"rank":11},{"slug":"nemo","name":"The Seas with Nemo & Friends","park":"ep","land":"World Nature","kind":"Dark ride","ids":["fb076275-0570-4d62-b2a9-4d6515130fa3"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/epcot/seas-with-nemo-and-friends/","lat":28.374904,"lng":-81.550852,"r":[1.5,0,0,1,1],"score":26.8,"level":2,"hreq":0,"flags":["lighting","dark"],"restraint":"N/A","time":"3 min","tags":"Slow Rides","health":false,"expect":false,"rs":false,"v":"A slow clamshell ride past cartoon fish, ending at a real aquarium.","f":"A clamshell car moves through dark undersea scenes with projected fish, including a brief chase by a glowing angler fish and a swirl of bubbles in the current scene.","mo":"Slow. One swirling tunnel can feel odd for a few seconds.","ht":"None.","tips":["If the swirling current tunnel bothers him, eyes closed for those few seconds does it."],"swap":null,"st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/nemo.jpg","w":840,"h":560,"by":"Jedi94","lic":"CC BY-SA 4.0","licurl":"https://creativecommons.org/licenses/by-sa/4.0","page":"https://commons.wikimedia.org/wiki/File:The_Seas_at_EPCOT_2024.jpg"},"rank":12},{"slug":"speedway","name":"Tomorrowland Speedway","park":"mk","land":"Tomorrowland","kind":"Guided cars","ids":["f163ddcd-43e1-488d-8276-2381c1db0a39"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/tomorrowland-speedway/","lat":28.419368,"lng":-81.579302,"r":[1.5,0,0,1,1],"score":26.8,"level":2,"hreq":32,"flags":["scent","loud","bumpy"],"restraint":"Lap belt","time":"6 min","tags":null,"health":true,"expect":true,"rs":true,"v":"Gas-powered cars on a guide rail. Slow, loud and a little jerky.","f":"You steer a small car around a track at a few miles an hour. A center rail keeps it in its lane, so the car bumps side to side as you steer. Cars often bump at the end.","mo":"Low speed, but the rail bumps and the exhaust smell can bother a sensitive stomach.","ht":"Ground level.","tips":["Let him drive. Drivers get less queasy than passengers. Disney's rule is 54 inches to drive alone.","Leave a gap to the car ahead to avoid the bump at the finish."],"swap":null,"st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/speedway.jpg","w":840,"h":560,"by":"Theme Park Tourist","lic":"CC BY 2.0","licurl":"https://creativecommons.org/licenses/by/2.0","page":"https://commons.wikimedia.org/wiki/File:Tomorrowland_Speedway_(22801305973).jpg"},"rank":13},{"slug":"little-mermaid","name":"Under the Sea - Journey of The Little Mermaid","park":"mk","land":"Fantasyland","kind":"Dark ride","ids":["3cba0cb4-e2a6-402c-93ee-c11ffcb127ef"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/under-the-sea-journey-of-the-little-mermaid/","lat":28.42112,"lng":-81.579975,"r":[1.5,0,0,1,1],"score":26.8,"level":2,"hreq":0,"flags":["lighting","loud","dark"],"restraint":"N/A","time":"5 min","tags":"Slow Rides","health":false,"expect":false,"rs":false,"v":"A slow clamshell ride through the movie's songs. Easy.","f":"A clamshell car turns to face each scene. Near the start it tips back and goes down a ramp backward to go under the sea. One large sea-witch figure is more theatrical than scary.","mo":"Slow. The backward descent lasts a few seconds.","ht":"None.","tips":["If going backward bothers him, look up at the ceiling lights during the descent. It passes quickly."],"swap":null,"st":{},"alert":null,"bk":true,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/little-mermaid.jpg","w":840,"h":560,"by":"HarshLight","lic":"CC BY 2.0","licurl":"https://creativecommons.org/licenses/by/2.0","page":"https://commons.wikimedia.org/wiki/File:Under_the_Sea_(43309036271).jpg"},"rank":14},{"slug":"philharmagic","name":"Mickey's PhilharMagic","park":"mk","land":"Fantasyland","kind":"3D show","ids":["7c5e1e02-3a44-4151-9005-44066d5ba1da"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/mickeys-philharmagic/","lat":28.42003,"lng":-81.581484,"r":[1.5,1,0,0,1.5],"score":27.2,"level":2,"hreq":0,"flags":["scent","lighting","loud","dark","wet"],"restraint":"N/A","time":"12 min","tags":"Stage Shows","health":false,"expect":false,"rs":false,"v":"A 3D movie with wind and water effects. The seats do not move.","f":"A 12-minute 3D film on a very wide screen, with gusts of air, a light spritz of water and a few loud moments. Some scenes fly over rooftops and clouds.","mo":"The seats stay still, but flying scenes on a wraparound screen can feel like motion.","ht":"Only on screen.","tips":["If a flying scene feels off, take the glasses off or look at the seat in front for a few seconds.","Sit toward the back and center, so the screen fills less of his view."],"swap":null,"st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"rank":15},{"slug":"figment","name":"Journey Into Imagination With Figment","park":"ep","land":"World Celebration","kind":"Dark ride","ids":["75449e85-c410-4cef-a368-9d2ea5d52b58"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/epcot/journey-into-imagination-with-figment/","lat":28.372994,"lng":-81.551401,"r":[1.5,0,0,1,2],"score":27.3,"level":2,"hreq":0,"flags":["scent","lighting","loud","dark"],"restraint":"N/A","time":"8 min","tags":"Dark, Slow Rides","health":false,"expect":false,"rs":false,"v":"A goofy slow ride with a purple dragon. One sudden dark moment with a loud noise.","f":"A slow car visits rooms about the five senses. In the sound room the lights cut out and a train seems to rush past. The smell room gives a quick skunk puff.","mo":"Slow, with a few turns.","ht":"None.","tips":["Warn him about the dark-room train sound and it becomes funny."],"swap":null,"st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/figment.jpg","w":840,"h":630,"by":"Reywas92","lic":"CC BY-SA 3.0","licurl":"https://creativecommons.org/licenses/by-sa/3.0/","page":"https://commons.wikimedia.org/wiki/File:EpcotImagination.JPG"},"rank":16},{"slug":"spaceship-earth","name":"Spaceship Earth","park":"ep","land":"World Celebration","kind":"Dark ride","ids":["480fde8f-fe58-4bfb-b3ab-052a39d4db7c"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/epcot/spaceship-earth/","lat":28.375583,"lng":-81.549401,"r":[1.5,1,0,1,1],"score":27.7,"level":2,"hreq":0,"flags":["scent","dark"],"restraint":"N/A","time":"13 min","tags":"Dark, Slow Rides","health":false,"expect":false,"rs":false,"v":"A slow ride up through the big silver ball and back down backward, in the dark.","f":"A slow car spirals up past scenes of human history, turns around under a starfield at the top, then descends backward while you tap a screen. About 13 minutes.","mo":"Slow, but the trip down is backward on a steady slope for several minutes.","ht":"You climb high inside the 180-foot sphere, but it is enclosed and dark, with no view down.","tips":["On the backward descent, focus on the touch screen in the car. It gives his eyes something that is not moving."],"swap":null,"st":{},"alert":null,"bk":true,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/spaceship-earth.jpg","w":840,"h":558,"by":"chensiyuan","lic":"Public domain","licurl":"","page":"https://commons.wikimedia.org/wiki/File:1_epcot_spaceship_earth_2010a.JPG"},"rank":17},{"slug":"pirates","name":"Pirates of the Caribbean","park":"mk","land":"Adventureland","kind":"Boat dark ride","ids":["352feb94-e52e-45eb-9c92-e4b44c6b1a9d"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/pirates-of-the-caribbean/","lat":28.41797,"lng":-81.584225,"r":[1,0,2,1.5,2.5],"score":30.6,"level":2,"hreq":0,"flags":["scent","lighting","loud","dark","bumpy","wet"],"restraint":"N/A","time":"9 min","tags":"Dark, Slow Rides, Small Drops","health":false,"expect":false,"rs":false,"v":"A classic boat ride with one short drop in the dark.","f":"Boats float through dark caves and a pirate raid with cannon blasts and singing pirates. Early on there is a single 14-foot drop in the dark. You feel it for about a second.","mo":"A slow boat. The drop is quick and the splash is small.","ht":"No heights.","tips":["The drop comes in the first couple of minutes, after the skeleton scenes. Count down to it together.","The cannon battle is loud. Warn him so it is not a surprise."],"swap":null,"st":{"dr":[14,"Wikipedia"]},"alert":["soon","Closes January 11, 2027 for a long refurbishment. Disney says it returns near the end of 2027. Last day to ride is January 10."],"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/pirates.jpg","w":840,"h":631,"by":"Mttbme","lic":"CC BY-SA 3.0","licurl":"https://creativecommons.org/licenses/by-sa/3.0","page":"https://commons.wikimedia.org/wiki/File:Pirates_of_the_Caribbean_at_Walt_Disney_World_January_2012.jpg"},"rank":18},{"slug":"frozen","name":"Frozen Ever After","park":"ep","land":"World Showcase: Norway","kind":"Boat dark ride","ids":["8d7ccdb1-a22b-4e26-8dc8-65b1938ed5f0"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/epcot/frozen-ever-after/","lat":28.370745,"lng":-81.54653,"r":[1.5,0.5,2,1.5,1],"score":30.7,"level":2,"hreq":0,"flags":["scent","lighting","bumpy","fast","lifts","wet"],"restraint":"N/A","time":"5 min","tags":"Dark, Slow Rides, Small Drops","health":false,"expect":false,"rs":true,"v":"A musical boat ride with two short drops, one of them backward.","f":"A boat climbs gently to an ice palace, slides backward down a short drop, then turns and goes forward down a 28-foot drop to the finale. Most of it is slow singing scenes.","mo":"A slow boat with a few seconds of backward travel.","ht":"Indoors and dim. No sense of height.","tips":["The backward slide comes right after the big song. The forward drop follows soon after.","The front row gets a light splash."],"swap":null,"st":{"dr":[28,"Wikipedia"]},"alert":null,"bk":true,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/frozen.jpg","w":840,"h":560,"by":"Theme Park Tourist","lic":"CC BY 2.0","licurl":"https://creativecommons.org/licenses/by/2.0","page":"https://commons.wikimedia.org/wiki/File:Frozen_Ever_After_Sign_(27803925036).jpg"},"rank":19},{"slug":"haunted-mansion","name":"Haunted Mansion","park":"mk","land":"Liberty Square","kind":"Dark ride","ids":["2551a77d-023f-4ab1-9a19-8afec0190f39"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/haunted-mansion/","lat":28.4202,"lng":-81.58288,"r":[1.5,1,0,1,3],"score":33.7,"level":2,"hreq":0,"flags":["lighting","loud","dark"],"restraint":"Lap bar","time":"8 min","tags":"Dark, Slow Rides","health":false,"expect":false,"rs":false,"v":"Spooky, not scary. Slow, dark and funny, with a few pop-up ghosts.","f":"First a room seems to stretch and the lights go out for a moment. Then a slow clamshell car carries you through a haunted house full of friendly ghosts. Near the end, heads pop up from behind gravestones.","mo":"Slow and smooth. The car turns to aim your view and tips back as it goes down one ramp backward.","ht":"One balcony view over a ballroom. No real sense of height.","tips":["Tell him ahead of time: the lights go out briefly in the first room and there is a loud scream.","Disney's own description is mildly frightening scenes, no gore, friendly ghosts."],"swap":null,"st":{},"alert":null,"bk":true,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/haunted-mansion.jpg","w":840,"h":560,"by":"Benjamin D. Esham (bdesham)","lic":"CC BY-SA 4.0","licurl":"https://creativecommons.org/licenses/by-sa/4.0","page":"https://commons.wikimedia.org/wiki/File:The_Haunted_Mansion.jpg"},"rank":20},{"slug":"safaris","name":"Kilimanjaro Safaris","park":"ak","land":"Africa","kind":"Safari truck","ids":["32e01181-9a5f-4936-8a77-0dace1de836c"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/animal-kingdom/kilimanjaro-safaris/","lat":28.359331,"lng":-81.59228,"r":[2,0.5,0,1.5,0.5],"score":35.8,"level":2,"hreq":0,"flags":["scent","loud","bumpy","fast"],"restraint":"N/A","time":"22 min","tags":"Slow Rides","health":true,"expect":true,"rs":false,"v":"An open truck through real savanna with real animals. Bumpy but slow.","f":"A big open-sided truck drives a rutted dirt road past giraffes, elephants, lions and more for about 18 minutes. It rocks and jostles like a back road.","mo":"Like a ride down a rough dirt road. Disney lists it with a health advisory for the bumps.","ht":"None.","tips":["Sit toward the front of the truck. The back bounces more.","Look out at the animals in the distance, not at a phone screen."],"swap":null,"st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/safaris.jpg","w":840,"h":612,"by":"Michael Lowin","lic":"CC BY-SA 3.0","licurl":"https://creativecommons.org/licenses/by-sa/3.0","page":"https://commons.wikimedia.org/wiki/File:AK_Safari.JPG"},"rank":21},{"slug":"peoplemover","name":"Tomorrowland Transit Authority PeopleMover","park":"mk","land":"Tomorrowland","kind":"Elevated tram","ids":["ffcfeaa2-1416-4920-a1ed-543c1a1695c4"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/tomorrowland-transit-authority-peoplemover/","lat":28.418155,"lng":-81.579033,"r":[1,2,0,1,1],"score":36.2,"level":2,"hreq":0,"flags":["dark","lifts"],"restraint":"N/A","time":"10 min","tags":"Slow Rides","health":false,"expect":false,"rs":false,"v":"A slow, breezy tram one story up. The best low-stakes heights test in the park.","f":"Open-sided cars glide along an elevated track around Tomorrowland for ten minutes, passing through Space Mountain's dark dome and other buildings. Top speed is under 7 mph.","mo":"Smooth and slow. Half the seats face backward.","ht":"Elevated the whole way, about rooftop level, but slow and with solid sides.","tips":["Take a forward-facing seat.","It goes dark for a minute inside Space Mountain. You will hear the coaster, not ride it."],"swap":null,"st":{"sp":[6.8,"Wikipedia"]},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/peoplemover.jpg","w":840,"h":560,"by":"Theme Park Tourist","lic":"CC BY 2.0","licurl":"https://creativecommons.org/licenses/by/2.0","page":"https://commons.wikimedia.org/wiki/File:Tomorrowland_Transit_Authority_PeopleMover_(29420418503).jpg"},"rank":22},{"slug":"peter-pan","name":"Peter Pan's Flight","park":"mk","land":"Fantasyland","kind":"Suspended dark ride","ids":["86a41273-5f15-4b54-93b6-829f140e5161"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/peter-pan-flight/","lat":28.420264,"lng":-81.581892,"r":[1.5,2,0.5,1,1],"score":37.0,"level":2,"hreq":0,"flags":["lighting","loud","dark","bumpy","fast","lifts"],"restraint":"Lap bar","time":"5 min","tags":"Slow Rides, Small Drops","health":false,"expect":false,"rs":false,"v":"A gentle flying ship over a tiny London. The one Fantasyland dark ride with a sense of height.","f":"A small ship hangs from an overhead rail and glides through dark rooms, floating above a miniature nighttime city. It dips and banks softly.","mo":"Soft swaying and gentle swoops. Slow throughout.","ht":"The ship hangs above the scenery, and the tiny city is built to look far below. The real distance is small, but it reads as high.","tips":["Share the trick beforehand: the city is a small model close underneath, not a real drop.","Look ahead at the scenes rather than straight down."],"swap":"\"it's a small world\", directly across the path","st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/peter-pan.jpg","w":840,"h":630,"by":"Freddo","lic":"CC BY-SA 4.0","licurl":"https://creativecommons.org/licenses/by-sa/4.0","page":"https://commons.wikimedia.org/wiki/File:Peter_Pan%27s_Flight_at_Magic_Kingdom.jpg"},"rank":23},{"slug":"dumbo","name":"Dumbo the Flying Elephant","park":"mk","land":"Fantasyland","kind":"Spinner","ids":["890fa430-89c0-4a3f-96c9-11597888005e"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/dumbo-the-flying-elephant/","lat":28.420509,"lng":-81.578947,"r":[2.5,2,0,1.5,0],"score":45.4,"level":3,"hreq":0,"flags":["bumpy","lifts"],"restraint":"Lap belt","time":"2 min","tags":"Slow Rides, Spinning","health":false,"expect":false,"rs":false,"v":"Gentle circles with a lever that sets the height. Kept low, it is easy.","f":"Open two-seat vehicles circle a fountain for about a minute and a half. A lever inside raises or lowers yours whenever you like.","mo":"Constant circling in one direction. That bothers some motion-sensitive riders even at this speed.","ht":"He controls it. Low, it skims just above the water. At the top it is well above head height with open sides.","tips":["Leave the lever down for the first lap. Raise it only if that felt fine.","Look out at the horizon, not down at the water or the center hub."],"swap":"Walt Disney World Railroad, next door at the Fantasyland station","st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/dumbo.jpg","w":840,"h":560,"by":"Paulo Guereta","lic":"CC BY 2.0","licurl":"https://creativecommons.org/licenses/by/2.0","page":"https://commons.wikimedia.org/wiki/File:Orlando_-_USA_(36851687123).jpg"},"rank":24},{"slug":"magic-carpets","name":"The Magic Carpets of Aladdin","park":"mk","land":"Adventureland","kind":"Spinner","ids":["96455de6-f4f1-403c-9391-bf8396979149"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/magic-carpets-of-aladdin/","lat":28.41843,"lng":-81.583472,"r":[2.5,2,0,1.5,0],"score":45.4,"level":3,"hreq":0,"flags":["bumpy","lifts","wet"],"restraint":"Lap belt","time":"2 min","tags":"Slow Rides, Spinning","health":false,"expect":false,"rs":false,"v":"Dumbo's twin in Adventureland: a lever for height, a button that tilts.","f":"Four-seat carpets circle a giant genie bottle. The front row's lever sets the height. The back row's button tips the carpet forward and back. A camel statue spits water at passing riders.","mo":"Constant circling, plus tilting if the back row plays with the button.","ht":"He controls it from the front row. Open sides at the top.","tips":["Put him in the front row with the height lever.","Ask the back row to leave the tilt button alone."],"swap":"Jungle Cruise or the Enchanted Tiki Room, steps away","st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/magic-carpets.jpg","w":800,"h":533,"by":"Diego Tirira","lic":"CC BY-SA 2.0","licurl":"https://creativecommons.org/licenses/by-sa/2.0","page":"https://commons.wikimedia.org/wiki/File:US_Magic_Kingdom_1211_(71)_(17223326646).jpg"},"rank":25},{"slug":"runaway-railway","name":"Mickey & Minnie's Runaway Railway","park":"hs","land":"Hollywood Boulevard","kind":"Trackless dark ride","ids":["6e118e37-5002-408d-9d88-0b5d9cdb5d14"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/hollywood-studios/mickey-minnies-runaway-railway/","lat":28.356678,"lng":-81.560567,"r":[2.5,0.5,0.5,2,1.5],"score":45.6,"level":3,"hreq":0,"flags":["lighting","loud","dark","bumpy","fast"],"restraint":"Lap bar","time":"5 min","tags":null,"health":false,"expect":false,"rs":false,"v":"A cartoon train ride with no track. Cheerful, busy and a little swirly.","f":"Train cars separate and glide on their own through cartoon scenes: a twister that spins the cars, a waterfall drop that is mostly projection, a dance class where the cars sway. No real drops.","mo":"Smooth floor-level gliding with some spins and sudden changes of direction.","ht":"None to speak of.","tips":["Look at the big physical sets rather than the projected backgrounds.","The twister scene is the spin. It lasts well under a minute."],"swap":null,"st":{},"alert":null,"bk":true,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/runaway-railway.jpg","w":840,"h":560,"by":"Jeremy Thompson","lic":"CC BY 2.0","licurl":"https://creativecommons.org/licenses/by/2.0","page":"https://commons.wikimedia.org/wiki/File:Mickey_%26_Minnie%27s_Runaway_Railway_(Disney%27s_Hollywood_Studios)_1.jpg"},"rank":26},{"slug":"kali","name":"Kali River Rapids","park":"ak","land":"Asia","kind":"River rapids","ids":["d58d9262-ec95-4161-80a0-07ca43b2f5f3"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/animal-kingdom/kali-river-rapids/","lat":28.358783,"lng":-81.588941,"r":[2.5,1.5,2,2,0.5],"score":47.1,"level":3,"hreq":38,"flags":["scent","bumpy","fast","wet"],"restraint":"Lap belt","time":"4 min","tags":"Small Drops, Spinning, Thrill Rides","health":true,"expect":true,"rs":true,"v":"A round raft on a rough river with one 20-foot slide. You will get soaked.","f":"A twelve-seat round raft climbs a conveyor, then bobs and turns down a rocky river and slides down a 20-foot slope. Which way you face at any moment is luck.","mo":"The raft rotates freely and bobs in the waves.","ht":"A lift hill, then low on the water.","tips":["Shoes and phones go in the center bin. Wet socks ruin a day faster than any ride.","On a cool day, skip it. Being drenched makes everything after it feel worse."],"swap":"Maharajah Jungle Trek, next door","st":{"dr":[20,"Disney"]},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/kali.jpg","w":840,"h":560,"by":"Loadmaster (David R. Tribble)","lic":"CC BY-SA 3.0","licurl":"https://creativecommons.org/licenses/by-sa/3.0","page":"https://commons.wikimedia.org/wiki/File:Disney-Animal-Kingdom-Kali-River-Ride-8319.jpg"},"rank":27},{"slug":"barnstormer","name":"The Barnstormer","park":"mk","land":"Fantasyland","kind":"Junior coaster","ids":["924a3b2c-6b4b-49e5-99d3-e9dc3f2e8a48"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/barnstormer-starring-great-goofini/","lat":28.420766,"lng":-81.578391,"r":[2,2.5,2,2.5,0],"score":47.7,"level":3,"hreq":35,"flags":["bumpy","fast","lifts"],"restraint":"Lap bar","time":"1 min","tags":"Small Drops","health":false,"expect":true,"rs":true,"v":"A one-minute starter coaster. The best first test.","f":"A small train climbs a 30-foot hill, then swoops through a few banked turns at up to 25 mph. It is over in about a minute.","mo":"Quick swooping turns, but so short there is little time to feel off.","ht":"One open lift hill to 30 feet, about the height of a three-story building.","tips":["Watch a train or two from the path first. The whole ride is visible.","Front rows are the smoothest."],"swap":"Walt Disney World Railroad, next door","st":{"sp":[25,"RCDB"],"hi":[30,"RCDB"]},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/barnstormer.jpg","w":840,"h":630,"by":"Martin Lewison","lic":"CC BY-SA 2.0","licurl":"https://creativecommons.org/licenses/by-sa/2.0","page":"https://commons.wikimedia.org/wiki/File:The_Barnstormer_2012.jpg"},"rank":28},{"slug":"rise","name":"Star Wars: Rise of the Resistance","park":"hs","land":"Star Wars: Galaxy's Edge","kind":"Trackless dark ride","ids":["1a2e70d9-50d5-4140-b69e-799e950f7d18"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/hollywood-studios/star-wars-rise-of-the-resistance/","lat":28.354884,"lng":-81.560457,"r":[2.5,1.5,2,2,3.5],"score":48.9,"level":3,"hreq":40,"flags":["lighting","loud","dark","bumpy","fast","lifts"],"restraint":"Lap belt","time":"15 min","tags":"Dark, Loud, Small Drops","health":true,"expect":true,"rs":true,"v":"A long, loud Star Wars adventure. More overwhelming than rough, with one short drop near the end.","f":"You walk through several scenes, stand in a small shuttle that rocks gently, then ride a trackless car that glides, spins and reverses through a huge starship with laser blasts and towering walkers. The finale is a brief simulated fall in an escape pod. About 15 minutes in all.","mo":"Mostly smooth gliding. The quick reversals and the escape-pod drop are the queasy moments.","ht":"Vast rooms, but you stay near floor level until the short drop.","tips":["The drop comes at the very end, lasts a few seconds, and is the last intense thing.","It is loud, with flashing blaster effects and a villain who gets close. Knowing the story beats ahead helps."],"swap":"Walk around Galaxy's Edge and meet back at the exit","st":{},"alert":null,"bk":true,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/rise.jpg","w":840,"h":630,"by":"elisfkc","lic":"CC BY-SA 2.0","licurl":"https://creativecommons.org/licenses/by-sa/2.0","page":"https://commons.wikimedia.org/wiki/File:Rise_of_the_Resistance_Entrance_(48512194827).jpg"},"rank":29},{"slug":"toy-story-mania","name":"Toy Story Mania!","park":"hs","land":"Toy Story Land","kind":"3D shooting ride","ids":["20b5daa8-e1ea-436f-830c-2d7d18d929b5"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/hollywood-studios/toy-story-mania/","lat":28.356404,"lng":-81.561894,"r":[3,0,0,1.5,0.5],"score":52.3,"level":3,"hreq":0,"flags":["lighting","loud","bumpy"],"restraint":"Lap bar","time":"5 min","tags":"Spinning","health":false,"expect":false,"rs":false,"v":"A 3D carnival-game ride. Great fun, but the car whips around between games.","f":"Two riders sit side by side wearing 3D glasses and fire a pull-string cannon at five game screens. Between screens the car spins and slides quickly to the next one.","mo":"Short, sharp spins between games, plus 3D screens up close.","ht":"Ground level.","tips":["Lift the glasses during the spins between games, then put them back to play.","Looking down at the cannon during each spin helps."],"swap":null,"st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/toy-story-mania.jpg","w":840,"h":472,"by":"Wacky Windjammer","lic":"CC BY-SA 4.0","licurl":"https://creativecommons.org/licenses/by-sa/4.0","page":"https://commons.wikimedia.org/wiki/File:Toy_Story_Mania_(Disney%27s_Hollywood_Studios)_1.jpg"},"rank":30},{"slug":"mission-space-green","name":"Mission: SPACE (Green)","park":"ep","land":"World Discovery","kind":"Simulator","ids":["5b6475ad-4e9a-4793-b841-501aa382c9c0"],"alias":["mission: space"],"url":"https://disneyworld.disney.go.com/attractions/epcot/mission-space/","lat":28.373927,"lng":-81.547156,"r":[3,1,0,2,2.5],"score":54.8,"level":3,"hreq":40,"flags":["lighting","loud","dark","bumpy","fast"],"restraint":"Over-the-shoulder restraint","time":"6 min","tags":"Dark, Spinning, Thrill Rides","health":true,"expect":true,"rs":true,"v":"The gentle version of the space simulator. No spinning, but a tight capsule with a screen close to your face.","f":"Four riders sit shoulder to shoulder in a small capsule with a screen close in front. The capsule tilts and rocks gently in time with an orbit around Earth. About five minutes inside.","mo":"Disney says this version does not spin and is less likely to cause motion sickness. It is still a simulator: what you see moves more than what you feel.","ht":"A view of Earth from orbit, on screen. No physical height.","tips":["Eyes forward on the screen, head back on the headrest. Looking sideways inside the capsule is what gets people.","Double-check you are in the Green line. Orange is a very different ride."],"swap":"Spaceship Earth, a short walk","st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/mission-space.jpg","w":840,"h":560,"by":"Jedi94","lic":"CC BY-SA 4.0","licurl":"https://creativecommons.org/licenses/by-sa/4.0","page":"https://commons.wikimedia.org/wiki/File:Mission_Space_Epcot.jpg"},"rank":31},{"slug":"remy","name":"Remy's Ratatouille Adventure","park":"ep","land":"World Showcase: France","kind":"Trackless 3D ride","ids":["1e735ffb-4868-47f1-b2cd-2ac1156cd5f0"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/epcot/remys-ratatouille-adventure/","lat":28.36825,"lng":-81.553097,"r":[3,1,1,2,1.5],"score":55.0,"level":3,"hreq":0,"flags":["scent","bumpy","wet"],"restraint":"Lap bar","time":"6 min","tags":null,"health":false,"expect":false,"rs":false,"v":"A trackless ride through a giant kitchen with big 3D screens. Charming, but it scurries and spins.","f":"A rat-shaped car with no track glides, turns and reverses between huge curved 3D screens. On screen you fall through a skylight and dodge a giant chef. Heat, mist and smells add to it.","mo":"The car's quick turns combine with moving 3D pictures. Disney's own guide notes a sensation of moving during the film parts.","ht":"A rooftop scene and one on-screen fall. No physical height.","tips":["Take the 3D glasses off for a few seconds if the screen scenes feel like too much.","Look at the real props between screens to reset."],"swap":"The France pavilion's film, next door","st":{},"alert":null,"bk":true,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/remy.jpg","w":840,"h":560,"by":"Jeremy Thompson","lic":"CC BY 2.0","licurl":"https://creativecommons.org/licenses/by/2.0","page":"https://commons.wikimedia.org/wiki/File:Epcot_-_52635509257.jpg"},"rank":32},{"slug":"big-thunder","name":"Big Thunder Mountain Railroad","park":"mk","land":"Frontierland","kind":"Roller coaster","ids":["de3309ca-97d5-4211-bffe-739fed47e92f"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/big-thunder-mountain-railroad/","lat":28.419964,"lng":-81.584642,"r":[3,2,2,3,1.5],"score":57.4,"level":3,"hreq":38,"flags":["loud","bumpy","fast","lifts"],"restraint":"Lap bar","time":"5 min","tags":"Small Drops, Thrill Rides","health":true,"expect":true,"rs":false,"v":"A mine train with lots of turns and no big drops. Rebuilt in 2026 with smoother track.","f":"The train climbs three lift hills inside caves, then swings through canyons and a ghost town at up to about 36 mph. It is all quick turns and small dips, with dark caverns, bats and a rumbling earthquake scene.","mo":"Side-to-side forces from constant turns. The new track is smoother than the old one, but it is still a coaster.","ht":"It hugs the rockwork and most of the climbing happens inside caves, so there is little open height.","tips":["Sit toward the front. The back cars whip harder through the turns.","Look ahead down the track, not at the scenery rushing past.","Ride it in daylight first. It feels faster after dark."],"swap":"Country Bear Musical Jamboree, a short walk away","st":{"sp":[36,"RCDB"]},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/big-thunder.jpg","w":840,"h":560,"by":"HarshLight","lic":"CC BY 2.0","licurl":"https://creativecommons.org/licenses/by/2.0","page":"https://commons.wikimedia.org/wiki/File:Big_Thunder_Mountain_Railroad_(42404713525).jpg"},"rank":33},{"slug":"slinky","name":"Slinky Dog Dash","park":"hs","land":"Toy Story Land","kind":"Family coaster","ids":["399aa0a1-98e2-4d2b-b297-2b451e9665e1"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/hollywood-studios/slinky-dog-dash/","lat":28.356245,"lng":-81.562786,"r":[2.5,3,3,3,0],"score":57.8,"level":3,"hreq":38,"flags":["lighting","loud","fast","lifts"],"restraint":"Lap bar","time":"3 min","tags":"Small Drops, Thrill Rides","health":false,"expect":true,"rs":true,"v":"A sunny outdoor family coaster. Smooth, with hills you can see coming.","f":"A long toy-dog train launches up a 50-foot hill, rolls over gentle drops and curves, stops, launches a second time and finishes with a row of small hops. Top speed is 40 mph. Everything is outdoors.","mo":"Smooth and flowing. No backward travel, no spinning.","ht":"The first hill is about five stories high with a wide-open view.","tips":["Watch a full lap from the walkway first. The whole track is visible.","Do The Barnstormer at Magic Kingdom first if the trip order allows."],"swap":"Walt Disney Presents, a few minutes away","st":{"sp":[40,"Wikipedia"],"hi":[50,"Wikipedia"]},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/slinky.jpg","w":840,"h":630,"by":"elisfkc","lic":"CC BY-SA 2.0","licurl":"https://creativecommons.org/licenses/by-sa/2.0","page":"https://commons.wikimedia.org/wiki/File:Slinky_Dog_Dash_(29262616398).jpg"},"rank":34},{"slug":"mine-train","name":"Seven Dwarfs Mine Train","park":"mk","land":"Fantasyland","kind":"Family coaster","ids":["9d4d5229-7142-44b6-b4fb-528920969a2c"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/seven-dwarfs-mine-train/","lat":28.42037,"lng":-81.58031,"r":[2.5,3,3,3,1],"score":58.4,"level":3,"hreq":38,"flags":["lighting","loud","dark","bumpy","fast","lifts"],"restraint":"Lap bar","time":"3 min","tags":"Small Drops, Thrill Rides","health":false,"expect":true,"rs":true,"v":"A smooth family coaster with swaying cars. A fair first real coaster.","f":"Mine cars that sway side to side roll through quick outdoor turns, slow down for a glittering indoor mine scene, then climb a second hill and drop 41 feet. Top speed is 34 mph.","mo":"The cars swing gently in the turns. That smooths the ride for some riders and bothers others.","ht":"Two outdoor lift hills with open views. The taller one comes right after the mine scene.","tips":["The biggest drop comes right after the indoor mine scene. Knowing that helps.","Ask for a row near the front: less whip, and he can see the track coming.","Do The Barnstormer first. If that goes well, this is the next step."],"swap":"The Many Adventures of Winnie the Pooh, across the path","st":{"sp":[34,"RCDB"],"dr":[41,"RCDB"]},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/mine-train.jpg","w":840,"h":559,"by":"Josh Hallett","lic":"CC BY-SA 2.0","licurl":"https://creativecommons.org/licenses/by-sa/2.0","page":"https://commons.wikimedia.org/wiki/File:Seven_Dwarfs_Mine_Train.jpg"},"rank":35},{"slug":"treehouse","name":"Swiss Family Treehouse","park":"mk","land":"Adventureland","kind":"Walk-through","ids":["30fe3c64-af71-4c66-a54b-aa61fd7af177"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/swiss-family-treehouse/","lat":28.418433,"lng":-81.582798,"r":[0,3.5,0,0,0],"score":59.3,"level":3,"hreq":0,"flags":["lifts"],"restraint":"N/A","time":"Self-paced","tags":null,"health":false,"expect":false,"rs":false,"v":"A walk-up treehouse, six stories at the top. All heights, zero motion, and he sets the pace.","f":"Wooden stairs and rope-railed platforms wind up and around a giant tree, past open-air rooms. You climb at your own speed. Disney puts the summit at six stories.","mo":"None. It is a walk.","ht":"Real, open height on solid stairs. The route is one-way: up one set of stairs and down another.","tips":["Stay on the trunk side of the stairs and look at the rooms, not over the railing.","Because it is one-way, make the call at the bottom."],"swap":"Jungle Cruise or the Enchanted Tiki Room, both next door","st":{"hi":[60,"Disney says six stories; about 10 ft per story assumed"]},"alert":null,"bk":false,"inv":0,"hiNote":"Six stories at the summit, per Disney","pos":"50% 30%","img":{"src":"img/treehouse.jpg","w":840,"h":1260,"by":"David Bjorgen","lic":"CC BY-SA 4.0","licurl":"https://creativecommons.org/licenses/by-sa/4.0","page":"https://commons.wikimedia.org/wiki/File:Swiss_Family_Robinson_Treehouse_1.jpg"},"rank":36},{"slug":"test-track","name":"Test Track","park":"ep","land":"World Discovery","kind":"High-speed car ride","ids":["37ae57c5-feaf-4e47-8f27-4b385be200f0"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/epcot/test-track/","lat":28.373228,"lng":-81.547489,"r":[3,2,1,4,2],"score":60.9,"level":4,"hreq":40,"flags":["lighting","loud","dark","bumpy","fast","lifts"],"restraint":"Lap belt","time":"5 min","tags":"Small Drops, Thrill Rides","health":true,"expect":true,"rs":true,"v":"A car ride that ends with a 65 mph lap outdoors. Fast, but it feels like a car, not a coaster.","f":"A six-seat open car runs through indoor scenes with some swerves and short hills, has a near miss with a truck's headlights and horn, then bursts outside for a banked lap at 65 mph.","mo":"Car-like. If he gets carsick on winding roads, the indoor swerves are the part to watch.","ht":"The outdoor lap is elevated with banked turns, but it lasts well under a minute.","tips":["Ask for the front row and look straight ahead, like riding shotgun.","The speed lap is the smoothest part. The swerves come earlier, indoors."],"swap":"Mission: SPACE (Green) next door, or Spaceship Earth","st":{"sp":[65.1,"Wikipedia"]},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/test-track.jpg","w":840,"h":498,"by":"ARC Adventures","lic":"CC BY 3.0","licurl":"https://creativecommons.org/licenses/by/3.0","page":"https://commons.wikimedia.org/wiki/File:Test_Track_3.0_Marquee_2025.png"},"rank":37},{"slug":"saucers","name":"Alien Swirling Saucers","park":"hs","land":"Toy Story Land","kind":"Whip spinner","ids":["d56506e2-6ad3-443a-8065-fea37987248d"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/hollywood-studios/alien-swirling-saucers/","lat":28.355385,"lng":-81.562379,"r":[3.5,0,0,2,0.5],"score":61.1,"level":4,"hreq":32,"flags":["lighting","loud","bumpy","fast"],"restraint":"Lap belt","time":"2 min","tags":"Spinning","health":false,"expect":false,"rs":true,"v":"A kiddie-looking whip ride that slings you sideways for two minutes.","f":"A toy rocket towed by a spinning saucer swings out sharply as the turntables hand you from one to the next. Milder than teacups, but you cannot control it.","mo":"Repeated sideways whips, with no way to tone it down once it starts.","ht":"Ground level.","tips":["Watch one full cycle first. What you see is the whole ride."],"swap":"Nothing gentle in Toy Story Land itself. Walt Disney Presents is a few minutes away","st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/saucers.jpg","w":840,"h":630,"by":"Benoît Prieur","lic":"CC0","licurl":"https://creativecommons.org/publicdomain/zero/1.0/deed.en","page":"https://commons.wikimedia.org/wiki/File:Alien_Swirling_Saucers_(Orlando)_May_2023.JPG"},"rank":38},{"slug":"tiana","name":"Tiana's Bayou Adventure","park":"mk","land":"Frontierland","kind":"Log flume","ids":["73cb9445-0695-47a3-87ce-d08ae36b5f3c"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/tianas-bayou-adventure/","lat":28.419418,"lng":-81.58498,"r":[1.5,3,4,3,1.5],"score":61.7,"level":4,"hreq":40,"flags":["scent","lighting","loud","dark","bumpy","fast","lifts","wet"],"restraint":"Lap bar","time":"7 min","tags":null,"health":true,"expect":true,"rs":true,"v":"A gentle musical boat ride that ends with a 50-foot drop. One big moment.","f":"A log boat floats through bayou scenes with a few small dips, then climbs a long lift and drops about 50 feet at 45 degrees, reaching around 40 mph. You will get wet.","mo":"Calm for nearly all of it. The drop is over in about three seconds.","ht":"At the top of the lift the log comes out into the open just before the plunge. That moment is the hard part.","tips":["Watch the drop from the walkway out front. What you see is exactly what you get.","At the top, eyes on the boat in front rather than the view."],"swap":"Country Bear Musical Jamboree, nearby","st":{"dr":[50,"Disney"],"sp":[40,"Wikipedia"]},"alert":["closed","Closed for routine refurbishment since November 2. Disney expects it back in December 2026, and its calendar shows December 18."],"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/tiana.jpg","w":840,"h":633,"by":"Jeremy Thompson","lic":"CC BY 2.0","licurl":"https://creativecommons.org/licenses/by/2.0","page":"https://commons.wikimedia.org/wiki/File:Tiana%27s_Bayou_Adventure_The_Magic_Kingdom_-_54164491348.jpg"},"rank":39},{"slug":"smugglers-run","name":"Millennium Falcon: Smugglers Run","park":"hs","land":"Star Wars: Galaxy's Edge","kind":"Simulator","ids":["34c4916b-989b-4ff1-a7e3-a6a846a3484f"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/hollywood-studios/millennium-falcon-smugglers-run/","lat":28.353889,"lng":-81.561689,"r":[3.5,1.5,2,3,2],"score":65.7,"level":4,"hreq":38,"flags":["lighting","loud","dark","bumpy","fast"],"restraint":"Lap belt","time":"4 min","tags":"Dark, Loud, Small Drops","health":true,"expect":true,"rs":true,"v":"You fly a spaceship in a cockpit simulator. How rough it gets depends on the two pilots.","f":"Six riders sit in a cockpit facing a large screen: two pilots steer, two gunners shoot, two engineers push buttons. The whole room pitches and shakes with the flying for about four and a half minutes.","mo":"A true motion simulator, without 3D glasses. Bad piloting means more crashes and more jolts.","ht":"Simulated flight, on screen only.","tips":["Ask for a pilot seat. The front row faces the screen squarely, and steering helps the brain predict the motion.","The back row faces side panels, which is the worst spot for a queasy rider."],"swap":"Walk around Galaxy's Edge. The full-size ship outside is the best part anyway","st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/smugglers-run.jpg","w":840,"h":640,"by":"Benoît Prieur","lic":"CC0","licurl":"https://creativecommons.org/publicdomain/zero/1.0/deed.en","page":"https://commons.wikimedia.org/wiki/File:Millennium_Falcon-_Smugglers_Run_at_Disney%27s_Hollywood_Studios_May_2023.jpg"},"rank":40},{"slug":"space-mountain","name":"Space Mountain","park":"mk","land":"Tomorrowland","kind":"Indoor coaster","ids":["b2260923-9315-40fd-9c6b-44dd811dbe64"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/space-mountain/","lat":28.418834,"lng":-81.578196,"r":[3.5,1,2.5,3,3],"score":66.2,"level":4,"hreq":44,"flags":["lighting","loud","dark","bumpy","fast","lifts"],"restraint":"Lap bar","time":"5 min","tags":"Big Drops, Dark, Thrill Rides","health":true,"expect":true,"rs":true,"v":"A jerky coaster in near-total darkness. No visible heights, but you cannot see what is coming.","f":"Small rocket sleds seat riders single file and whip through sharp turns and sudden dips in the dark for about two and a half minutes. Top speed is only 27 mph, but it feels faster.","mo":"Abrupt and rough, with nothing to look at for balance. That combination is hard on motion-sensitive riders.","ht":"The track climbs high inside the dome, but in the dark there is no view down.","tips":["Ride the PeopleMover first. It passes through the building, so he can hear the coaster and decide.","If he rides, the front seat of the sled is the smoothest."],"swap":"PeopleMover or Buzz Lightyear, both close by","st":{"sp":[27,"RCDB"],"dr":[26,"Wikipedia"],"hi":[90,"RCDB"]},"alert":null,"bk":false,"inv":0,"hiNote":"Track height inside the dome. You cannot see it in the dark","pos":null,"img":{"src":"img/space-mountain.jpg","w":840,"h":630,"by":"Benjamin D. Esham (bdesham)","lic":"CC BY-SA 4.0","licurl":"https://creativecommons.org/licenses/by-sa/4.0","page":"https://commons.wikimedia.org/wiki/File:Magic_Kingdom_Space_Mountain.jpg"},"rank":41},{"slug":"tron","name":"TRON Lightcycle / Run","park":"mk","land":"Tomorrowland","kind":"Launch coaster","ids":["5a43d1a7-ad53-4d25-abfe-25625f0da304"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/tron-lightcycle-run/","lat":28.419625,"lng":-81.577985,"r":[3,3,2.5,4.5,2],"score":69.8,"level":4,"hreq":48,"flags":["lighting","loud","dark","fast","lifts"],"restraint":"Leg restraints & back pad","time":"3 min","tags":"Big Drops, Dark, Thrill Rides","health":false,"expect":true,"rs":true,"v":"One of the fastest coasters at any Disney park. Smooth, short and intense, on a motorcycle-style seat.","f":"You lean forward on a bike-style seat with a pad locking in behind you, launch to 59 mph in seconds, swoop outside under a glowing canopy, then race through a dark hall of lights. The ride part lasts about a minute.","mo":"Smooth track, but a hard launch and tight high-speed turns.","ht":"The outdoor swoop under the canopy reaches 78 feet, briefly and fast.","tips":["Try the test seat outside the entrance first. The leaning posture is the part many riders dislike.","Some trains have a regular upright seat in the back. Ask a Cast Member."],"swap":"PeopleMover, which glides past the launch for a good look","st":{"sp":[59.3,"RCDB"],"hi":[78,"RCDB"]},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/tron.jpg","w":840,"h":560,"by":"Carter Johnson","lic":"CC BY 2.0","licurl":"https://creativecommons.org/licenses/by/2.0","page":"https://commons.wikimedia.org/wiki/File:Tron_Lightcycle_Power_Run_(Magic_Kingdom)_5.jpg"},"rank":42},{"slug":"soarin","name":"Soarin' Across America","park":"ep","land":"World Nature","kind":"Flight simulator","ids":["81b15dfd-cf6a-466f-be59-3dd65d2a2807"],"alias":["soarin"],"url":"https://disneyworld.disney.go.com/attractions/epcot/soarin-across-america/","lat":28.373592,"lng":-81.552248,"r":[2.5,4,1,1,1],"score":72.3,"level":4,"hreq":40,"flags":["scent","lighting","loud","dark","bumpy","lifts"],"restraint":"Lap belt","time":"7 min","tags":"Slow Rides, Small Drops","health":false,"expect":false,"rs":true,"v":"A hang-glider simulator that lifts you 30 to 50 feet up with your feet dangling. Gentle motion, real height.","f":"A row of seats swings up and forward into a giant domed screen showing flights over American landscapes. The seats tilt gently with the film while breezes and scents drift by. About five minutes of flying.","mo":"The seats move softly. The big moving picture is what can unsettle a stomach.","ht":"Feet dangle over open space the whole time. Row 1 rises highest, about 50 feet. Row 3 stays lowest, about 30 feet. Those figures come from Disney's planDisney panel.","tips":["Ask the Cast Member for row 3, the lowest.","Looking up or out at the horizon in the film works better than looking down past his feet.","Disney's standing advice is that riders with a fear of heights or motion sickness should not ride. Take that at face value."],"swap":"Living with the Land, in the same building","st":{"hi":[50,"planDisney: about 50 ft in row 1, 40 in row 2, 30 in row 3"]},"alert":null,"bk":false,"inv":0,"hiNote":"Row 1 about 50 ft, row 3 about 30 ft","pos":null,"img":{"src":"img/soarin.jpg","w":840,"h":630,"by":"Michael Gray","lic":"CC BY-SA 2.0","licurl":"https://creativecommons.org/licenses/by-sa/2.0","page":"https://commons.wikimedia.org/wiki/File:Soarin_Seating_Epcot_Center.jpg"},"rank":43},{"slug":"flight-of-passage","name":"Avatar Flight of Passage","park":"ak","land":"Pandora","kind":"3D flight simulator","ids":["24cf863c-b6ba-4826-a056-0b698989cbf7"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/animal-kingdom/avatar-flight-of-passage/","lat":28.355554,"lng":-81.592147,"r":[4,3.5,3,3,2],"score":76.9,"level":4,"hreq":44,"flags":["scent","lighting","loud","dark","bumpy","fast","wet"],"restraint":"Leg restraints and back pad","time":"5 min","tags":"Thrill Rides","health":true,"expect":true,"rs":true,"v":"A stunning 3D flight on the back of a winged creature. It hits both triggers: a moving picture and steep dives.","f":"You sit bike-style with pads holding your back and legs, wearing 3D glasses, in front of an enormous screen. The seat tilts gently while the film swoops off cliffs, dives toward the sea and banks through caves for about four and a half minutes.","mo":"The seat barely moves and the picture moves a lot. That mismatch is the classic simulator problem.","ht":"The dives look and feel steep, and you may notice other rows of riders above and below you.","tips":["Closing his eyes works well here, because the seat itself moves so little.","Looking at the edge of the screen or at other riders reminds the brain it is a film.","Try Soarin' on another day first. If that is fine, this is the next step up."],"swap":"Na'vi River Journey, next door","st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/flight-of-passage.jpg","w":840,"h":630,"by":"Freddo","lic":"CC BY-SA 4.0","licurl":"https://creativecommons.org/licenses/by-sa/4.0","page":"https://commons.wikimedia.org/wiki/File:Avatar_Flight_of_Passage_-_Disney%27s_Animal_Kingdom.jpg"},"rank":44},{"slug":"star-tours","name":"Star Tours - The Adventures Continue","park":"hs","land":"Echo Lake","kind":"3D simulator","ids":["3b290419-8ca2-44bc-a710-a6c83fca76ec"],"alias":["star tours"],"url":"https://disneyworld.disney.go.com/attractions/hollywood-studios/star-tours/","lat":28.355695,"lng":-81.558891,"r":[4.5,2,2,3,2],"score":83.1,"level":5,"hreq":40,"flags":["lighting","loud","dark","bumpy","fast"],"restraint":"Lap belt","time":"7 min","tags":"Small Drops","health":true,"expect":true,"rs":true,"v":"A 3D flight simulator in a closed cabin. A known trouble spot for motion sickness.","f":"Riders sit in a windowless shuttle facing a 3D screen. The cabin pitches, drops and jolts through a chase in space for about four and a half minutes. The story changes from ride to ride.","mo":"Jerky movement plus 3D glasses in a sealed room. Disney's own page warns motion-sensitive riders about it.","ht":"Simulated flying and diving, on screen.","tips":["If he rides, a middle row near the center moves the least.","Closing his eyes only half helps here, because the cabin itself really moves."],"swap":"For the First Time in Forever: A Frozen Sing-Along, close by","st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/star-tours.jpg","w":840,"h":472,"by":"Wacky Windjammer","lic":"CC BY-SA 4.0","licurl":"https://creativecommons.org/licenses/by-sa/4.0","page":"https://commons.wikimedia.org/wiki/File:Star_Tours_%E2%80%93_The_Adventures_Continue_(Disney%27s_Hollywood_Studios)_3.jpg"},"rank":45},{"slug":"rock-coaster","name":"Rock 'n' Roller Coaster Starring The Muppets","park":"hs","land":"Sunset Boulevard","kind":"Indoor launch coaster","ids":["e516f303-e82d-4fd3-8fbf-8e6ab624cf89"],"alias":["roller coaster"],"url":"https://disneyworld.disney.go.com/attractions/hollywood-studios/rock-and-roller-coaster-starring-muppets/","lat":28.359712,"lng":-81.56059,"r":[4.5,1,2,5,3],"score":84.3,"level":5,"hreq":48,"flags":["lighting","loud","dark","bumpy","fast","lifts"],"restraint":"Over-the-shoulder restraint","time":"2 min","tags":"Big Drops, Loud, Thrill Rides","health":true,"expect":true,"rs":true,"v":"Disney World's most intense coaster: 0 to 57 mph in 2.8 seconds, then upside down three times in the dark.","f":"A stretch-limo train launches from a standstill to 57 mph and goes straight into two inversions, then a corkscrew, all indoors in the dark with music blasting from the headrest. The ride lasts about 80 seconds.","mo":"Very smooth, but going upside down three times in the dark is a lot for the inner ear.","ht":"Indoors and dark. No sense of height.","tips":["Skip for now. The rest of the group can use the single rider line to keep it quick."],"swap":"Beauty and the Beast Live on Stage, on the same street","st":{"sp":[57,"RCDB"],"hi":[80,"RCDB"],"g":[5,"RCDB"]},"alert":null,"bk":false,"inv":3,"hiNote":"Track height, indoors and unseen","pos":null,"img":{"src":"img/rock-coaster.jpg","w":840,"h":472,"by":"MondoLens","lic":"CC BY 4.0","licurl":"https://creativecommons.org/licenses/by/4.0","page":"https://commons.wikimedia.org/wiki/File:Rock_%27n%27_Roller_Coaster_Starring_The_Muppets_entrance.jpeg"},"rank":46},{"slug":"mad-tea-party","name":"Mad Tea Party","park":"mk","land":"Fantasyland","kind":"Spinning teacups","ids":["0aae716c-af13-4439-b638-d75fb1649df3"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/mad-tea-party/","lat":28.420023,"lng":-81.579825,"r":[5,0,0,2,0],"score":86.3,"level":5,"hreq":0,"flags":["fast"],"restraint":"N/A","time":"2 min","tags":"Spinning","health":false,"expect":false,"rs":false,"v":"Pure spinning. The most reliable way to feel sick at Magic Kingdom.","f":"Your teacup sits on a spinning turntable on a spinning floor, and a wheel in the middle spins the cup itself. It lasts about a minute and a half.","mo":"Three kinds of spin at once. Even with hands off the wheel, the cup still whirls with the floor.","ht":"Ground level.","tips":["If he insists: hands off the center wheel, eyes on one fixed thing outside the ride.","Never right before a meal or another ride."],"swap":"The Many Adventures of Winnie the Pooh, next door","st":{},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/mad-tea-party.jpg","w":604,"h":453,"by":"Romulan248","lic":"CC BY 3.0","licurl":"https://creativecommons.org/licenses/by/3.0","page":"https://commons.wikimedia.org/wiki/File:Mad_Tea_Part_WDW.jpg"},"rank":47},{"slug":"astro-orbiter","name":"Astro Orbiter","park":"mk","land":"Tomorrowland","kind":"Elevated spinner","ids":["d9d12438-d999-4482-894b-8955fdb20ccf"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/magic-kingdom/astro-orbiter/","lat":28.418493,"lng":-81.578989,"r":[3.5,5,0,2,0.5],"score":89.9,"level":5,"hreq":0,"flags":["lighting","loud","bumpy","lifts"],"restraint":"Lap belt","time":"3 min","tags":"Slow Rides, Spinning","health":false,"expect":false,"rs":false,"v":"The hardest heights test in the park. Open rockets circle fast on top of a tower.","f":"An elevator takes you up to a rooftop platform. You climb into an open two-seat rocket and circle quickly, tilted outward, for about a minute and a half. A lever raises and lowers the rocket.","mo":"Steady, fast circling while leaning outward.","ht":"Open cockpit, real height, nothing below but Tomorrowland. Riders who dislike heights often rate this worse than the big coasters.","tips":["Keeping the lever down does not help much. The platform itself is already high.","For the same view at a third of the height, the PeopleMover runs right underneath."],"swap":"PeopleMover, directly below it","st":{"hi":[80,"fan sources; Disney does not publish a figure"]},"alert":["soon","Closed January 5 to 7, 2027 for a short refurbishment."],"bk":false,"inv":0,"hiNote":"About 80 ft above the ground at the top of the arc","pos":null,"img":{"src":"img/astro-orbiter.jpg","w":840,"h":630,"by":"ThrillZing","lic":"CC BY 4.0","licurl":"https://creativecommons.org/licenses/by/4.0","page":"https://commons.wikimedia.org/wiki/File:Tomorrowland_sign_with_PeopleMover_track_and_Astro_Orbiter,_Magic_Kingdom,_June_2006_-_ThrillZing.jpg"},"rank":48},{"slug":"mission-space-orange","name":"Mission: SPACE (Orange)","park":"ep","land":"World Discovery","kind":"Centrifuge simulator","ids":["5b6475ad-4e9a-4793-b841-501aa382c9c0"],"alias":["mission: space"],"url":"https://disneyworld.disney.go.com/attractions/epcot/mission-space/","lat":28.373927,"lng":-81.547156,"r":[5,1,0,4,2.5],"score":90.2,"level":5,"hreq":44,"flags":["lighting","loud","dark","bumpy","fast"],"restraint":"Over-the-shoulder restraint","time":"6 min","tags":"Dark, Spinning, Thrill Rides","health":true,"expect":true,"rs":true,"v":"A spinning centrifuge that presses you into the seat. Disney itself warns motion-sensitive riders away.","f":"The same capsule as Green, but the whole thing spins on a centrifuge to create sustained launch forces of about 2.5 G. You do not see the spin. You feel it.","mo":"Strong spinning that your eyes cannot see is the classic recipe for nausea. Sick bags are provided at each seat.","ht":"On screen only.","tips":["Skip for now. The group can split here: thrill-seekers take Orange, he takes Green, and everyone meets at the exit."],"swap":"Mission: SPACE (Green), same building","st":{"g":[2.5,"Wikipedia"]},"alert":null,"bk":false,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/mission-space.jpg","w":840,"h":560,"by":"Jedi94","lic":"CC BY-SA 4.0","licurl":"https://creativecommons.org/licenses/by-sa/4.0","page":"https://commons.wikimedia.org/wiki/File:Mission_Space_Epcot.jpg"},"rank":49},{"slug":"guardians","name":"Guardians of the Galaxy: Cosmic Rewind","park":"ep","land":"World Discovery","kind":"Indoor spinning coaster","ids":["e3549451-b284-453d-9c31-e3b1207abd79"],"alias":[],"url":"https://disneyworld.disney.go.com/attractions/epcot/guardians-of-the-galaxy-cosmic-rewind/","lat":28.374902,"lng":-81.54784,"r":[5,1,3,4.5,2.5],"score":92.9,"level":5,"hreq":42,"flags":["lighting","loud","dark","fast","lifts"],"restraint":"Lap bar","time":"3 min","tags":"Dark, Thrill Rides","health":true,"expect":true,"rs":true,"v":"A fast indoor coaster whose cars rotate the whole time and launch backward. The toughest ride here for motion sickness.","f":"After a pitch-dark preshow, the train launches backward, then races at up to 60 mph through a dark space scene while each car slowly turns to face the action. It is very smooth, with no loops.","mo":"Rotation plus speed plus giant screens. Riders who never get sick on coasters sometimes do here.","ht":"No visible height. It is dark and you cannot see the track.","tips":["Skip for now. Rider Switch lets the adults take turns while one stays with him.","For anyone who does ride: light stomach, eyes forward, head back against the seat."],"swap":"Spaceship Earth, a five-minute walk","st":{"sp":[60.3,"RCDB"]},"alert":null,"bk":true,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/guardians.jpg","w":840,"h":630,"by":"Jedi94","lic":"CC BY-SA 4.0","licurl":"https://creativecommons.org/licenses/by-sa/4.0","page":"https://commons.wikimedia.org/wiki/File:Guardians_of_the_Galaxy_Cosmic_Rewind_at_EPCOT.jpg"},"rank":50},{"slug":"everest","name":"Expedition Everest","park":"ak","land":"Asia","kind":"Roller coaster","ids":["64a6915f-a835-4226-ba5c-8389fc4cade3"],"alias":["expedition everest"],"url":"https://disneyworld.disney.go.com/attractions/animal-kingdom/expedition-everest/","lat":28.358477,"lng":-81.587378,"r":[4,5,4,4,3],"score":96.4,"level":5,"hreq":44,"flags":["lighting","loud","dark","bumpy","fast","lifts"],"restraint":"Lap bar","time":"3 min","tags":"Big Drops, Dark, Thrill Rides","health":true,"expect":true,"rs":true,"v":"A big mountain coaster with a high open climb, an 80-foot drop and a stretch backward in the dark.","f":"The train climbs to 112 feet in the open, stops at torn-up track near the summit, rolls backward through a dark spiral inside the mountain, then plunges 80 feet and tears around the peak at 50 mph.","mo":"The backward spiral in the dark is the part that gets people.","ht":"A long, exposed climb with the whole park below, then a pause at the top.","tips":["Skip for now. Watching trains come down the big drop from the bridge is a good show.","The rest of the group can use the single rider line."],"swap":"Maharajah Jungle Trek, the walking trail next door","st":{"sp":[50,"RCDB"],"hi":[112,"RCDB"],"dr":[80,"RCDB"]},"alert":null,"bk":true,"inv":0,"hiNote":null,"pos":null,"img":{"src":"img/everest.jpg","w":840,"h":630,"by":"Benjamin D. Esham (bdesham)","lic":"CC BY-SA 4.0","licurl":"https://creativecommons.org/licenses/by-sa/4.0","page":"https://commons.wikimedia.org/wiki/File:Expedition_Everest.jpg"},"rank":51},{"slug":"tower","name":"The Twilight Zone Tower of Terror","park":"hs","land":"Sunset Boulevard","kind":"Drop tower","ids":["6f6998e8-a629-412c-b964-2cb06af8e26b"],"alias":["tower of terror"],"url":"https://disneyworld.disney.go.com/attractions/hollywood-studios/twilight-zone-tower-of-terror/","lat":28.359553,"lng":-81.559772,"r":[3,5,5,4,4],"score":96.8,"level":5,"hreq":40,"flags":["scent","lighting","loud","dark","bumpy","fast","lifts"],"restraint":"Lap belt","time":"7 min","tags":"Big Drops, Dark, Scary","health":true,"expect":true,"rs":true,"v":"A haunted elevator that drops 13 stories, again and again. The top of the scary list.","f":"After a spooky walk through a deserted hotel, a seated elevator rises, drifts through dark hallway scenes, then is pulled up and down the shaft in a random series of drops. At the top, doors open to show the park from 13 stories up.","mo":"Repeated weightless drops and sudden lifts.","ht":"The doors open at the very top on purpose.","tips":["Skip for now. This ride is built from his two least favorite things.","You can see the doors open from Sunset Boulevard. Watching from the ground is its own thrill."],"swap":"Beauty and the Beast Live on Stage, on the same street","st":{"hi":[199,"Wikipedia"],"sp":[39,"Wikipedia"],"dr":[130,"Wikipedia"]},"alert":null,"bk":false,"inv":0,"hiNote":"The building is 199 ft tall. Drops happen inside a 130 ft shaft","pos":"50% 22%","img":{"src":"img/tower.jpg","w":840,"h":1051,"by":"Benjamin D. Esham (bdesham)","lic":"CC BY-SA 4.0","licurl":"https://creativecommons.org/licenses/by-sa/4.0","page":"https://commons.wikimedia.org/wiki/File:Hollywood_Tower_Hotel.jpg"},"rank":52}],"parks":{"mk":{"name":"Magic Kingdom","short":"MK","id":"75ea578a-adc8-4116-a54d-dccb60765ef9","c":[28.419,-81.5812],"z":17},"ep":{"name":"EPCOT","short":"EPCOT","id":"47f90d2c-e191-4239-a466-5892ef59a88b","c":[28.3718,-81.5497],"z":16},"hs":{"name":"Hollywood Studios","short":"Studios","id":"288747d1-8b4f-4a64-867e-ea7c9b27bad8","c":[28.357,-81.5607],"z":17},"ak":{"name":"Animal Kingdom","short":"Animal K.","id":"1c84a229-8862-4648-9c71-378ddd2c7693","c":[28.3585,-81.59],"z":16}},"breaks":{"mk":[["Country Bear Musical Jamboree","16 min","Singing animatronic bears. Dim theater."],["Walt Disney's Enchanted Tiki Room","20 min","Singing birds. Goes dark for a loud thunderstorm scene."],["The Hall of Presidents","22 min","Quiet, dark and air-conditioned."],["Monsters, Inc. Laugh Floor","12 min","Live animated comedy. Dim, some loud laughs."],["Enchanted Tales with Belle","walk-through show","A small-group storytelling show."],["Main Street Vehicles","short","A slow ride up Main Street. Some seats face sideways."],["Walt Disney's Carousel of Progress","closed","A gentle rotating-theater show. Closed since July 6, 2026 for a reimagining; Disney expects it back in late spring 2027."]],"ep":[["Journey of Water, Inspired by Moana","self-paced","A walk-through water garden. He may get splashed."],["Turtle Talk with Crush","15 min","A talking animated turtle answers kids' questions."],["The American Adventure","30 min","A stage show with film and animatronics. Dark, some loud moments."],["Awesome Planet","10 min","A nature film. Stairs in the theater."],["Disney and Pixar Short Film Festival","15 min","3D cartoons in a dark theater."],["Canada Far and Wide, Reflections of China","13 to 14 min each","360-degree films watched standing. Disney notes a sensation of moving, so lean on a rail and pick one screen to watch."],["SeaBase Aquarium","self-paced","Real fish, dolphins and manatees."]],"hs":[["For the First Time in Forever: A Frozen Sing-Along","30 min","A funny sing-along with film clips."],["Beauty and the Beast Live on Stage","30 min","An outdoor covered stage show."],["The Little Mermaid: A Musical Adventure","22 min","Puppets and blacklight. Dark, with fog."],["Disney Villains: Unfairly Ever After","17 min","A stage show. Dark, loud, fog effects."],["Indiana Jones Epic Stunt Spectacular","30 min","Live stunts with loud explosions and gunshots."],["Walt Disney Presents","self-paced","A quiet walk-through gallery and short film."]],"ak":[["Festival of the Lion King","30 min","A big, loud, joyful stage show with a fire dancer."],["Finding Nemo: The Big Blue... and Beyond!","30 min","A puppet musical in a dark theater."],["Feathered Friends in Flight","25 min","Live birds fly low over the audience."],["Maharajah Jungle Trek","self-paced","A walking trail with tigers and bats."],["Gorilla Falls Exploration Trail","self-paced","A walking trail with gorillas and hippos."],["Discovery Island Trails","self-paced","Quiet paths around the Tree of Life."]]},"transport":[{"name":"Disney Skyliner","level":4,"h":4,"m":1.5,"v":"A gondola up to 60 feet above the ground. Smooth and enclosed, but a real heights test.","d":"Enclosed cabins for up to ten travel at 11 mph between EPCOT, Hollywood Studios and four resorts. It sometimes pauses briefly in mid-air. No air conditioning, just vents.","tips":["Buses serve every Skyliner resort and park. Ask at the bus stop or front desk.","Between EPCOT and Hollywood Studios you can also walk the path or take the boat, about 20 to 25 minutes either way.","If he wants to try it, the short hop between Caribbean Beach and Riviera is about three minutes."],"alert":"Closed January 24 to 30, 2027 for annual maintenance. Buses replace it.","src":"Height and speed: Wikipedia and TouringPlans. Closure: Disney via refurbishment calendars.","img":{"src":"img/skyliner.jpg","w":840,"h":630,"by":"Jedi94","lic":"CC BY-SA 4.0","licurl":"https://creativecommons.org/licenses/by-sa/4.0","page":"https://commons.wikimedia.org/wiki/File:Disney_Skyliner,_October_2019.jpg"}},{"name":"Monorail","level":2,"h":2,"m":1,"v":"An enclosed train on a raised beam. About treetop height, with wide windows.","d":"Runs between the Magic Kingdom, the parking hub, EPCOT and three resorts. Smooth, air-conditioned and fully enclosed.","tips":["Sit facing forward and look far out, not straight down.","The ferry boat is the ground-level way across the lagoon to Magic Kingdom."],"alert":null,"src":"Disney transportation pages; Wikipedia.","img":{"src":"img/monorail.jpg","w":840,"h":494,"by":"Benoît Prieur","lic":"CC0","licurl":"https://creativecommons.org/publicdomain/zero/1.0/deed.en","page":"https://commons.wikimedia.org/wiki/File:Walt_Disney_World_Monorail_System_en_f%C3%A9vrier_2022.JPG"}},{"name":"Buses, boats and walking","level":1,"h":0,"m":1,"v":"Ground level. Buses can sway on turns like any bus.","d":"Every park and resort is reachable by bus. Boats link some resorts and parks.","tips":["On a bus, a forward-facing seat near the front is the steadiest."],"alert":null,"src":"CDC motion sickness guidance for seat choice."}],"stepups":[{"t":"Coasters","d":"From a one-minute hill to a real mountain. Stop wherever it stops being fun.","s":["barnstormer","big-thunder","slinky","mine-train","space-mountain","tron"]},{"t":"Heights","d":"Each one is a little higher or a little more exposed than the last.","s":["peoplemover","peter-pan","dumbo","treehouse","soarin"]},{"t":"Screens and simulators","d":"For testing how his stomach handles moving pictures.","s":["buzz","runaway-railway","toy-story-mania","mission-space-green","smugglers-run","flight-of-passage"]}],"weights":{"m":1.0,"h":1.0,"d":0.8,"s":0.8,"k":0.6}};</script>
+<script>(function () {
+'use strict';
+var RG = window.RG, R = RG.rides, P = RG.parks, bySlug = {};
+R.forEach(function (r) { bySlug[r.slug] = r; });
+var LV = {
+  1: { n: 'Go', c: '#1F8A4C', d: 'Nothing to prepare for.', range: 'under 20' },
+  2: { n: 'Easy', c: '#1F6FB8', d: 'Gentle, with one thing worth knowing.', range: '20 to 39' },
+  3: { n: 'Stretch', c: '#F2C230', d: 'Doable with a plan. Read the tips first.', range: '40 to 59' },
+  4: { n: 'Big ask', c: '#E8742A', d: 'A lot of ride. Only if he is asking for it.', range: '60 to 79' },
+  5: { n: 'Skip for now', c: '#C62828', d: 'Built around spinning, simulators or heights.', range: '80 and up' }
+};
+var FACT = [['Motion', 1], ['Heights', 1], ['Drops', 0.8], ['Speed and force', 0.8], ['Dark and startle', 0.6]];
+var FLAG = { dark: 'Dark stretches', loud: 'Loud noises', bumpy: 'Bumpy', fast: 'Fast', lifts: 'Lifts off the ground', wet: 'Gets you wet', lighting: 'Lighting effects', scent: 'Scents' };
+var $ = function (s, el) { return (el || document).querySelector(s); };
+var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+var store = { get: function (k, d) { try { var v = localStorage.getItem('rg.' + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } }, set: function (k, v) { try { localStorage.setItem('rg.' + k, JSON.stringify(v)); } catch (e) {} } };
+
+/* ---------- signs ---------- */
+function sign(level, label) {
+  var c = LV[level].c, dark = level === 3, t = label == null ? '' : String(label), shape;
+  if (level === 1) shape = '<circle cx="20" cy="20" r="18" fill="' + c + '"/>';
+  else if (level === 2) shape = '<rect x="3" y="3" width="34" height="34" rx="4" fill="' + c + '"/>';
+  else if (level === 3) shape = '<path d="M20 3.5 37.6 35H2.4Z" fill="' + c + '" stroke="#000" stroke-width="2.4" stroke-linejoin="round"/>';
+  else if (level === 4) shape = '<path d="M20 1.6 38.4 20 20 38.4 1.6 20Z" fill="' + c + '" stroke="' + c + '" stroke-width="1" stroke-linejoin="round"/>';
+  else shape = '<path d="M12.5 2h15L38 12.5v15L27.5 38h-15L2 27.5v-15Z" fill="' + c + '"/>';
+  var fs = t.length > 1 ? (level === 3 ? 13.5 : level === 4 ? 15.5 : 17.5) : (level === 3 ? 16 : 19);
+  var y = level === 3 ? 30 : 20 + fs * 0.35;
+  var txt = t ? '<text x="20" y="' + y + '" text-anchor="middle" font-family="Barlow Condensed,Arial Narrow,sans-serif" font-weight="700" font-size="' + fs + '" fill="' + (dark ? '#000' : '#fff') + '">' + esc(t) + '</text>' : '';
+  return '<svg class="sign" viewBox="0 0 40 40" aria-hidden="true" focusable="false">' + shape + txt + '</svg>';
+}
+function segs(v, n) { var h = ''; for (var i = 1; i <= 5; i++) h += '<i' + (v >= i ? ' class="f"' : v >= i - 0.5 ? ' class="h"' : '') + '></i>'; return h; }
+function fmtNum(v) { return (Math.round(v * 10) / 10).toString(); }
+
+/* ---------- live waits ---------- */
+var live = {}, liveAt = null, liveErr = false, liveBusy = false;
+function norm(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(); }
+function summarize(es) {
+  var order = { OPERATING: 0, DOWN: 1, CLOSED: 2, REFURBISHMENT: 3 };
+  es = es.slice().sort(function (a, b) { return (order[a.status] == null ? 9 : order[a.status]) - (order[b.status] == null ? 9 : order[b.status]); });
+  var e = es[0], q = e.queue || {}, o = { status: e.status, wait: null, single: !!q.SINGLE_RIDER, ll: null };
+  if (q.STANDBY && q.STANDBY.waitTime != null) o.wait = q.STANDBY.waitTime;
+  var p = q.PAID_RETURN_TIME, m = q.RETURN_TIME;
+  if (p) o.ll = { kind: 'Single Pass', state: p.state, start: p.returnStart, price: p.price && p.price.formatted };
+  else if (m) o.ll = { kind: 'Multi Pass', state: m.state, start: m.returnStart };
+  return o;
+}
+function loadLive() {
+  if (liveBusy) return; liveBusy = true;
+  var ids = Object.keys(P).map(function (k) { return P[k].id; });
+  Promise.all(ids.map(function (id) {
+    return fetch('https://api.themeparks.wiki/v1/entity/' + id + '/live', { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('live'); return r.json(); });
+  })).then(function (res) {
+    var byId = {}, all = [];
+    res.forEach(function (d) { (d.liveData || []).forEach(function (e) { byId[e.id] = e; all.push(e); }); });
+    R.forEach(function (r) {
+      var es = r.ids.map(function (id) { return byId[id]; }).filter(Boolean);
+      if (!es.length) es = all.filter(function (e) {
+        if (e.entityType !== 'ATTRACTION') return false; var n = norm(e.name);
+        return n === norm(r.name) || r.alias.some(function (a) { return n.indexOf(norm(a)) >= 0; });
+      });
+      live[r.slug] = es.length ? summarize(es) : null;
+    });
+    liveAt = new Date(); liveErr = false;
+  }).catch(function () { liveErr = true; }).then(function () { liveBusy = false; paintLive(); });
+}
+function et(iso) { try { return new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }).format(new Date(iso)); } catch (e) { return ''; } }
+function isOpen(r) { var l = live[r.slug]; return !!(l && l.status === 'OPERATING'); }
+function waitCell(r) {
+  var l = live[r.slug];
+  if (!l) return r.alert && r.alert[0] === 'closed' ? '<div class="wait txt">Closed</div>' : '<div class="wait txt"></div>';
+  if (l.status === 'OPERATING') return l.wait != null ? '<div class="wait">' + l.wait + '<small>min wait</small></div>' : '<div class="wait txt">Open</div>';
+  if (l.status === 'DOWN') return '<div class="wait txt">Down right now</div>';
+  if (l.status === 'REFURBISHMENT') return '<div class="wait txt">Closed for refurb</div>';
+  return '<div class="wait txt">Closed</div>';
+}
+function statusTags(r) {
+  var l = live[r.slug], h = '';
+  if (l) {
+    if (l.status === 'OPERATING') h += '<span class="tag solid">' + (l.wait != null ? l.wait + ' min wait now' : 'Open now') + '</span>';
+    else if (l.status === 'DOWN') h += '<span class="tag warn">Temporarily down</span>';
+    else if (l.status === 'REFURBISHMENT') h += '<span class="tag warn">Closed for refurbishment</span>';
+    else h += '<span class="tag">Closed right now</span>';
+    if (l.ll && l.status === 'OPERATING') {
+      var s = 'Lightning Lane ' + l.ll.kind;
+      if (l.ll.state === 'AVAILABLE' && l.ll.start) s += ': next ' + et(l.ll.start) + (l.ll.price ? ', ' + esc(l.ll.price) : '');
+      else if (l.ll.state === 'FINISHED') s += ': gone for today';
+      h += '<span class="tag">' + s + '</span>';
+    }
+    if (l.single) h += '<span class="tag">Single rider line</span>';
+  }
+  return h;
+}
+function paintLive() {
+  var b = $('#livebtn'); if (b) {
+    var txt = liveErr && !liveAt ? 'Live waits unavailable' : liveAt ? 'Waits as of ' + new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }).format(liveAt) + ' ET' : 'Loading live waits';
+    b.innerHTML = '<span class="dot ' + (liveAt && !liveErr ? 'on' : liveErr ? 'off' : '') + '"></span><span>' + txt + '</span>';
+  }
+  if (view === 'rides') drawList();
+  if (view === 'plan') { var s = $('#splits'); if (s) s.innerHTML = splitsRows(); }
+  if (sheetSlug) { var st = $('#opstatus'); if (st) st.innerHTML = statusTags(bySlug[sheetSlug]); }
+  if (mapObj) restyleMarkers();
+  if (view === 'map') drawKey();
+}
+
+/* ---------- rides view ---------- */
+var fPark = store.get('park', 'all'), fOpen = store.get('open', false), fSort = store.get('sort', 'gentle');
+function parkChips(id, cur, withAll) {
+  var h = '<div class="chips" role="group" aria-label="Park" id="' + id + '">';
+  if (withAll) h += '<button class="chip" data-park="all" aria-pressed="' + (cur === 'all') + '">All four parks</button>';
+  Object.keys(P).forEach(function (k) { h += '<button class="chip" data-park="' + k + '" aria-pressed="' + (cur === k) + '">' + P[k].name + '</button>'; });
+  return h + '</div>';
+}
+function viewRides() {
+  var lg = '';
+  for (var i = 1; i <= 5; i++) lg += '<li>' + sign(i) + '<b>' + LV[i].n + '</b><span>' + LV[i].d + '</span></li>';
+  return '<section class="hero"><div class="wrap"><h1>Every ride, gentlest to wildest</h1>' +
+    '<p>An unofficial guide to all ' + R.length + ' rides at Walt Disney World, scored for a rider who would rather skip the spinning and the heights. Tap any ride for its one-pager.</p>' +
+    '<ul class="legend" aria-label="The five levels">' + lg + '</ul>' +
+    '<p class="note">Shape and color always mean the same thing. The number inside is the ride\'s place in line, 1 being the gentlest.</p></div></section>' +
+    '<div class="filters"><div class="wrap">' + parkChips('pf', fPark, true) +
+    '<div class="opts"><label><input type="checkbox" id="fopen"' + (fOpen ? ' checked' : '') + '> Open now</label>' +
+    '<label><span class="lb">Sort</span> <select id="fsort"><option value="gentle">Gentlest first</option><option value="wait">Shortest wait</option></select></label><span class="count" id="count"></span></div></div></div>' +
+    '<div class="wrap"><div id="list"></div><p class="foot">Scores are one careful opinion built from the sources on the Method tab. Every rider is different, and nobody has to ride anything. Unofficial and not affiliated with Disney.</p></div>';
+}
+function rowHtml(r) {
+  var l = live[r.slug], shut = (l && l.status !== 'OPERATING') || (!l && r.alert && r.alert[0] === 'closed');
+  return '<li><button class="row' + (shut ? ' closed' : '') + '" data-ride="' + r.slug + '">' + sign(r.level, r.rank) +
+    '<span><h3>' + esc(r.name) + '</h3><div class="meta">' + P[r.park].name + ', ' + esc(r.land) + '</div>' +
+    '<div class="pips"><span>Motion <span class="pip">' + segs(r.r[0]) + '</span></span><span>Heights <span class="pip">' + segs(r.r[1]) + '</span></span></div></span>' +
+    waitCell(r) + '</button></li>';
+}
+function drawList() {
+  var box = $('#list'); if (!box) return;
+  var rs = R.filter(function (r) { return (fPark === 'all' || r.park === fPark) && (!fOpen || isOpen(r)); });
+  var h = '';
+  if (!rs.length) h = '<p class="empty">' + (fOpen && !liveAt ? 'Live status has not loaded yet, so nothing can be marked open. Untick Open now to see every ride.' : 'Nothing matches. Untick Open now or pick another park.') + '</p>';
+  else if (fSort === 'wait') {
+    rs = rs.slice().sort(function (a, b) { var x = live[a.slug], y = live[b.slug]; var wa = x && x.status === 'OPERATING' && x.wait != null ? x.wait : 999, wb = y && y.status === 'OPERATING' && y.wait != null ? y.wait : 999; return wa - wb || a.rank - b.rank; });
+    h = '<div class="lvlhead"><div><h2>Shortest wait first</h2><p>Signs still show each ride\'s level.</p></div></div><ul class="rows">' + rs.map(rowHtml).join('') + '</ul>';
+  } else {
+    var cur = 0, open = false;
+    rs.forEach(function (r) {
+      if (r.level !== cur) {
+        if (open) h += '</ul>';
+        if (r.level >= 4 && cur < 4) h += '<div class="tape"><i></i><p><b>The line</b>Everything above this tape is fair game for a first trip. Everything below it is a bigger ask.</p></div>';
+        cur = r.level; open = true;
+        h += '<div class="lvlhead">' + sign(cur) + '<div><h2>' + LV[cur].n + '</h2><p>' + LV[cur].d + '</p></div></div><ul class="rows">';
+      }
+      h += rowHtml(r);
+    });
+    if (open) h += '</ul>';
+  }
+  box.innerHTML = h;
+  var c = $('#count'); if (c) c.textContent = rs.length + (rs.length === 1 ? ' ride' : ' rides');
+}
+
+/* ---------- one-pager ---------- */
+function driver(r) {
+  var best = 0, bi = 0; r.r.forEach(function (v, i) { var w = v * FACT[i][1]; if (w > best + 1e-9) { best = w; bi = i; } });
+  return FACT[bi][0];
+}
+function gauge(r) {
+  var hi = r.st.hi, dr = r.st.dr; if (!hi && !dr) return '';
+  var max = 200, W = 320, x0 = 4, x1 = 316, sx = function (v) { return x0 + (x1 - x0) * Math.min(v, max) / max; };
+  var rows = []; if (hi) rows.push(['Highest point', hi[0]]); if (dr) rows.push(['Biggest drop', dr[0]]);
+  var H = rows.length * 36 + 22, s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + rows.map(function (a) { return a[0] + ' ' + a[1] + ' feet'; }).join(', ') + '">';
+  rows.forEach(function (a, i) {
+    var y = i * 36, w = Math.max(6, sx(a[1]) - x0);
+    s += '<text class="bl" x="' + x0 + '" y="' + (y + 13) + '">' + a[0] + ': ' + (r.slug === 'astro-orbiter' ? 'about ' : '') + Math.round(a[1]) + ' ft</text>' +
+      '<rect x="' + x0 + '" y="' + (y + 19) + '" width="' + (x1 - x0) + '" height="8" rx="4" fill="#E3E9E5"/><rect x="' + x0 + '" y="' + (y + 19) + '" width="' + w + '" height="8" rx="4" fill="#111416"/>';
+  });
+  var yb = rows.length * 36 - 6;
+  [[25, '2-story house'], [100, '10 stories'], [200, '20 stories']].forEach(function (t) {
+    var x = sx(t[0]); s += '<line x1="' + x + '" x2="' + x + '" y1="' + (yb - 2) + '" y2="' + (yb + 6) + '" stroke="#4B555A" stroke-width="1"/><text x="' + x + '" y="' + (yb + 20) + '" text-anchor="' + (t[0] === 200 ? 'end' : t[0] === 25 ? 'start' : 'middle') + '">' + t[1] + '</text>';
+  });
+  return '<div class="gauge">' + s + '</svg></div>';
+}
+function facts(r) {
+  var f = [], st = r.st, src = [];
+  f.push(['Minimum height', r.hreq ? r.hreq + ' in.' : 'None']);
+  f.push(['Ride time', esc(r.time.replace('Modified Route: ', '')), 'Disney\'s figure, loading included']);
+  if (st.sp) { f.push(['Top speed', st.sp[0] + ' mph']); src.push('speed ' + st.sp[1]); }
+  if (st.dr) { f.push(['Biggest drop', st.dr[0] + ' ft']); src.push('drop ' + st.dr[1]); }
+  if (st.hi) { f.push(['Highest point', (r.slug === 'astro-orbiter' ? 'about ' : '') + st.hi[0] + ' ft', r.hiNote]); src.push('height ' + st.hi[1]); }
+  if (st.g) { f.push(['Peak force', st.g[0] + ' G']); src.push('G-force ' + st.g[1]); }
+  f.push(['Goes backward', r.bk ? 'Yes, briefly' : 'No']);
+  f.push(['Upside down', r.inv ? r.inv + ' times' : 'Never']);
+  f.push(['Restraint', r.restraint === 'N/A' ? 'None' : esc(r.restraint)]);
+  if (r.rs) f.push(['Rider Switch', 'Offered']);
+  var h = '<dl class="facts">' + f.map(function (a) { return '<div><dt>' + a[0] + '</dt><dd>' + a[1] + (a[2] ? '<small>' + esc(a[2]) + '</small>' : '') + '</dd></div>'; }).join('') + '</dl>';
+  h += '<p class="small" style="margin-top:8px">Height rule, ride time and restraint are Disney\'s own.' + (src.length ? ' Other figures: ' + esc(src.join('; ')) + '.' : '') + '</p>';
+  return h;
+}
+function onepager(r, forPrint) {
+  var i = r.rank - 1, prev = R[i - 1], next = R[i + 1], img = r.img, h = '<article class="op">';
+  if (img) h += '<div class="photo"><img src="' + img.src + '" alt="' + esc(r.name) + ' at ' + P[r.park].name + '" width="' + img.w + '" height="' + img.h + '"' + (forPrint ? '' : ' loading="lazy"') + (r.pos ? ' style="object-position:' + r.pos + '"' : '') + '></div>' +
+    '<p class="credit">Photo: ' + esc(img.by) + ', <a href="' + img.licurl + '" target="_blank" rel="noopener">' + esc(img.lic) + '</a>, via <a href="' + esc(img.page) + '" target="_blank" rel="noopener">Wikimedia Commons</a>. Resized.' + (r.slug.indexOf('mission-space') === 0 ? ' Both versions share this building.' : '') + '</p>';
+  else h += '<div class="photo none"></div>';
+  h += '<div class="pad"><div class="lvl">' + sign(r.level, r.rank) + '<div><b>' + LV[r.level].n + '</b><span>Score ' + Math.round(r.score) + ' of 100, number ' + r.rank + ' of ' + R.length + ' from gentlest to wildest</span></div></div>' +
+    '<h2>' + esc(r.name) + '</h2><p class="where">' + P[r.park].name + ', ' + esc(r.land) + '. ' + esc(r.kind) + '.</p>';
+  if (!forPrint) h += '<div class="status" id="opstatus">' + statusTags(r) + '</div>';
+  if (r.alert) h += '<p class="alert ' + r.alert[0] + '">' + esc(r.alert[1]) + '</p>';
+  h += '<p class="verdict">' + esc(r.v) + '</p><div class="meters">';
+  FACT.forEach(function (f, k) { h += '<div class="meter' + (k > 1 ? ' minor' : '') + '"><span class="lab">' + f[0] + '</span><span class="segs" role="img" aria-label="' + f[0] + ' ' + r.r[k] + ' out of 5">' + segs(r.r[k]) + '</span><span class="val">' + fmtNum(r.r[k]) + '</span></div>'; });
+  h += '</div><p class="driver">Each is scored 0 to 5. This ride\'s level is set mainly by: ' + driver(r).toLowerCase() + '.</p>';
+  h += '<h4>What it feels like</h4><p>' + esc(r.f) + '</p><div class="two"><div><h4>Motion</h4><p>' + esc(r.mo) + '</p></div><div><h4>Heights</h4><p>' + esc(r.ht) + '</p></div></div>';
+  h += '<div class="lower"><div class="lcol">';
+  if (r.tips.length) h += '<h4>Make it easier</h4><ul class="tips">' + r.tips.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>';
+  if (r.swap) h += '<div class="swap"><b>If it is a no</b>' + esc(r.swap) + '.</div>';
+  h += '</div><div class="nums"><h4>The numbers</h4>' + gauge(r) + facts(r) + '</div>';
+  var fl = r.flags.map(function (k) { return '<span>' + FLAG[k] + '</span>'; }).join('');
+  h += '<div class="lf"><h4>What Disney flags</h4>' + (fl ? '<div class="flags">' + fl + '</div>' : '<p class="small">Nothing flagged in Disney\'s sensory guide.</p>') +
+    '<p class="small">From Disney\'s sensory guide, June 2026.' + (r.tags ? ' Disney\'s ride tags: ' + esc(r.tags) + '.' : '') + (r.health ? ' On Disney\'s health advisory list.' : '') + '</p></div></div>';
+  if (!forPrint) {
+    h += '<div class="links"><a class="btn ghost" href="' + r.url + '" target="_blank" rel="noopener">Disney\'s page for this ride</a><button class="btn ghost" data-print="' + r.slug + '">Print this page</button></div>';
+    h += '<div class="opnav">' + (prev ? '<button data-go="' + prev.slug + '"><small>Gentler</small>' + esc(prev.name) + '</button>' : '<span></span>') + (next ? '<button data-go="' + next.slug + '"><small>Wilder</small>' + esc(next.name) + '</button>' : '<span></span>') + '</div>';
+  }
+  if (forPrint) h += '<p class="pfoot">Andy\'s Ride Guide, pjones7-del.github.io/ride-guide. Unofficial, not affiliated with Disney. Scores are this guide\'s own. Checked November 25, 2026.</p>';
+  return h + '</div></article>';
+}
+var sheetSlug = null, depth = 0;
+function openSheet(slug) {
+  var r = bySlug[slug], s = $('#sheet'); sheetSlug = slug;
+  $('#sheetbody').innerHTML = onepager(r); $('#sheetrank').textContent = r.rank + ' of ' + R.length;
+  s.hidden = false; s.scrollTop = 0; document.title = r.name + ' | Andy\'s Ride Guide';
+  if (window.matchMedia('(max-width:899px)').matches) document.body.style.overflow = 'hidden';
+  if (!document.body.classList.contains('has-sheet')) { document.body.classList.add('has-sheet'); if (mapObj) mapObj.invalidateSize(); }
+  $('#sheetback').focus({ preventScroll: true });
+}
+function closeSheet() { if (!sheetSlug) return; sheetSlug = null; $('#sheet').hidden = true; document.body.style.overflow = ''; document.body.classList.remove('has-sheet'); if (mapObj) mapObj.invalidateSize(); document.title = 'Andy\'s Ride Guide'; }
+
+/* ---------- map ---------- */
+var mapObj = null, markers = {}, mPark = store.get('mpark', 'mk'), meMarker = null;
+function viewMap() {
+  return '<div class="mapbar"><div class="wrap">' + parkChips('mf', mPark, false) + '</div></div><div class="maplay"><div class="mapwrap"><div id="map" role="application" aria-label="Park map with ride pins"></div><button class="locate" id="locate">Find me</button></div><div class="key" id="key"></div></div>';
+}
+function keyWait(r) {
+  var l = live[r.slug];
+  if (!l) return r.alert && r.alert[0] === 'closed' ? '<small class="q">Closed</small>' : '<small></small>';
+  if (l.status === 'OPERATING') return l.wait != null ? '<small>' + l.wait + ' min</small>' : '<small class="q">Open</small>';
+  return '<small class="q">' + (l.status === 'DOWN' ? 'Down' : 'Closed') + '</small>';
+}
+function drawKey() {
+  var k = $('#key'); if (!k) return;
+  var rs = R.filter(function (r) { return r.park === mPark; });
+  k.innerHTML = '<h2>' + P[mPark].name + ' key</h2><p>Each pin carries the ride\'s number from the full list, gentlest first. Tap a row to find it on the map.</p><ol class="steps">' +
+    rs.map(function (r) { return '<li><button data-pin="' + r.slug + '">' + sign(r.level, r.rank) + '<span>' + esc(r.name) + '</span>' + keyWait(r) + '</button></li>'; }).join('') + '</ol>';
+}
+function showPin(slug) {
+  var m = markers[slug]; if (!mapObj || !m) return;
+  window.scrollTo(0, 0);
+  mapObj.setView(m.getLatLng(), Math.max(mapObj.getZoom(), 18), { animate: false });
+  m.openPopup();
+}
+function loadLeaflet(cb) {
+  if (window.L) return cb();
+  var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = 'vendor/leaflet.css'; document.head.appendChild(l);
+  var s = document.createElement('script'); s.src = 'vendor/leaflet.js'; s.onload = cb; s.onerror = function () { var m = $('#map'); if (m) m.innerHTML = '<p class="wrap empty">The map could not load. Check the connection and try again.</p>'; }; document.head.appendChild(s);
+}
+function pinIcon(r) { var l = live[r.slug], shut = l && l.status !== 'OPERATING'; return window.L.divIcon({ className: 'pin' + (shut ? ' shut' : ''), html: sign(r.level, r.rank), iconSize: [34, 34], iconAnchor: [17, 17], popupAnchor: [0, -14] }); }
+function popupHtml(r) {
+  var l = live[r.slug], st = '';
+  if (l) st = l.status === 'OPERATING' ? (l.wait != null ? l.wait + ' minute wait' : 'Open') : l.status === 'DOWN' ? 'Down right now' : l.status === 'REFURBISHMENT' ? 'Closed for refurbishment' : 'Closed';
+  return '<h3>' + esc(r.name) + '</h3><div>' + LV[r.level].n + ', number ' + r.rank + (st ? '<br>' + st : '') + '</div><a class="btn" href="#/ride/' + r.slug + '" data-ride="' + r.slug + '">Open one-pager</a>';
+}
+function initMap() {
+  loadLeaflet(function () {
+    var el = $('#map'); if (!el || !window.L) return; var L = window.L;
+    mapObj = L.map(el, { zoomControl: true, attributionControl: true }).setView(P[mPark].c, P[mPark].z);
+    var far = function () { el.classList.toggle('far', mapObj.getZoom() < 17); };
+    mapObj.on('zoomend', far);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(mapObj);
+    markers = {}; var used = {};
+    R.forEach(function (r) {
+      var k = r.lat + ',' + r.lng, n = used[k] = (used[k] || 0) + 1;
+      var m = L.marker([r.lat, r.lng + (n - 1) * 0.00028], { icon: pinIcon(r), title: r.name, alt: r.name + ', ' + LV[r.level].n, riseOnHover: true, zIndexOffset: (6 - r.level) * 10 }).addTo(mapObj);
+      m.bindPopup(function () { return popupHtml(r); }, { maxWidth: 260 }); markers[r.slug] = m;
+    });
+    mapObj.on('locationfound', function (e) {
+      if (meMarker) meMarker.setLatLng(e.latlng); else meMarker = L.marker(e.latlng, { icon: L.divIcon({ className: '', html: '<div class="me"></div>', iconSize: [16, 16], iconAnchor: [8, 8] }), interactive: false }).addTo(mapObj);
+      var near = Object.keys(P).some(function (k) { return mapObj.distance(e.latlng, P[k].c) < 1500; });
+      var b = $('#locate'); if (near) { mapObj.setView(e.latlng, 18); if (b) b.textContent = 'Find me'; } else if (b) b.textContent = 'You are not in a park yet';
+    });
+    mapObj.on('locationerror', function () { var b = $('#locate'); if (b) b.textContent = 'Location is off'; });
+    fitPark(); far();
+    setTimeout(function () { if (mapObj) { mapObj.invalidateSize(); fitPark(); far(); } }, 250);
+  });
+}
+function fitPark() {
+  if (!mapObj) return; var pts = R.filter(function (r) { return r.park === mPark; }).map(function (r) { return [r.lat, r.lng]; });
+  mapObj.closePopup(); mapObj.fitBounds(window.L.latLngBounds(pts).pad(-0.06), { paddingTopLeft: [10, 24], paddingBottomRight: [10, 34], maxZoom: 18, animate: false });
+}
+function restyleMarkers() { if (!window.L) return; R.forEach(function (r) { if (markers[r.slug]) markers[r.slug].setIcon(pinIcon(r)); }); }
+
+/* ---------- plan ---------- */
+function stepBtn(slug) { var r = bySlug[slug]; return '<li><button data-ride="' + slug + '">' + sign(r.level, r.rank) + '<span>' + esc(r.name) + '</span><small>' + P[r.park].short + '</small></button></li>'; }
+function splitsRows() {
+  return R.filter(function (r) { return r.level >= 4; }).map(function (r) {
+    var l = live[r.slug], extra = [];
+    if (r.rs) extra.push('Rider Switch'); if (l && l.single) extra.push('single rider line');
+    return '<tr><td><button class="lk" data-ride="' + r.slug + '">' + esc(r.name) + '</button><span class="mini">' + P[r.park].name + (extra.length ? '. ' + extra.join(', ') : '') + '</span></td><td>' + esc(r.swap || 'Wait nearby with a snack') + '</td></tr>';
+  }).join('');
+}
+function viewPlan() {
+  var h = '<div class="wrap">';
+  h += '<section class="sec"><h2>Three ways to step up</h2><p>Each path runs from easy to hard for one kind of ride. Go one rung at a time, on different days if you can, and stop wherever it stops being fun.</p>';
+  RG.stepups.forEach(function (s) { h += '<div class="path"><h3>' + s.t + '</h3><p>' + s.d + '</p><ol class="steps">' + s.s.map(stepBtn).join('') + '</ol></div>'; });
+  h += '</section>';
+  h += '<section class="sec"><h2>When the group splits</h2><p>For every ride past the line, here is something close by that he can do instead. Disney\'s Rider Switch covers a guest who is not riding and cannot wait alone: tell the Cast Member at the entrance with the whole group there, and the adult who waited boards afterward without queuing again.</p>' +
+    '<table class="table"><thead><tr><th>They ride</th><th>He can</th></tr></thead><tbody id="splits">' + splitsRows() + '</tbody></table></section>';
+  h += '<section class="sec"><h2>Sit-down breaks</h2><p>Shows and walk-throughs with no ride motion at all. Good between bigger rides, or while others are in a long line.</p>';
+  Object.keys(P).forEach(function (k) { h += '<details><summary>' + P[k].name + '</summary><div class="in"><ul class="brk">' + RG.breaks[k].map(function (b) { return '<li><b>' + esc(b[0]) + ' <small>' + esc(b[1]) + '</small></b>' + esc(b[2]) + '</li>'; }).join('') + '</ul></div></details>'; });
+  h += '</section>';
+  h += '<section class="sec"><h2>Getting around</h2><p>Transport counts too. The Skyliner is the one to think about ahead of time.</p>';
+  RG.transport.forEach(function (t) {
+    h += '<div class="tr">' + (t.img ? '<img src="' + t.img.src + '" alt="' + esc(t.name) + '" loading="lazy" width="' + t.img.w + '" height="' + t.img.h + '"><p class="credit">Photo: ' + esc(t.img.by) + ', ' + esc(t.img.lic) + ', via <a href="' + esc(t.img.page) + '" target="_blank" rel="noopener">Wikimedia Commons</a>. Resized.</p>' : '') +
+      '<div class="in"><h3>' + sign(t.level) + esc(t.name) + '</h3><p class="verdict" style="margin:8px 0 8px">' + esc(t.v) + '</p><p>' + esc(t.d) + '</p>' + (t.alert ? '<p class="alert">' + esc(t.alert) + '</p>' : '') +
+      '<ul class="tips">' + t.tips.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div></div>';
+  });
+  h += '</section>';
+  h += '<section class="sec"><h2>The basics</h2><div class="cols">' +
+    '<div class="card"><h3>Keeping a stomach settled</h3><ul class="tips">' +
+    '<li>Motion sickness starts when the eyes and the inner ear disagree. Screens that move while the seat does not are the worst case.</li>' +
+    '<li>Face forward, sit toward the front, and look far ahead at something steady.</li>' +
+    '<li>Sip water through the day. Eat small and plain before a Stretch ride, not a big meal.</li>' +
+    '<li>No phone screens in the last stretch of a line or on anything that moves.</li>' +
+    '<li>One motion ride, then a calm one. Queasiness stacks up.</li>' +
+    '<li>Ask his doctor or pharmacist before the trip whether a motion-sickness medicine makes sense for him, and when to take it.</li></ul></div>' +
+    '<div class="card"><h3>Making heights easier</h3><ul class="tips">' +
+    '<li>Watch the ride run from the ground first. For indoor rides, watch a ride-through video together at home.</li>' +
+    '<li>Pick the seat: lowest row, inside seat, front of the train where he can see what is coming.</li>' +
+    '<li>Eyes out at the horizon, not down.</li>' +
+    '<li>Tell him the number. Thirty feet sounds smaller once you know it is a three-story building.</li></ul></div>' +
+    '<div class="card"><h3>He holds the veto</h3><ul class="tips">' +
+    '<li>No is a full answer at any point before the ride starts, including at the loading platform. Tell a Cast Member and they will walk you to the exit.</li>' +
+    '<li>Agree on a signal for mid-ride, like a hand squeeze, that means eyes closed and counting together.</li>' +
+    '<li>A ride skipped today can be a ride tried on the next trip.</li></ul></div>' +
+    '<div class="card"><h3>Closures to know</h3><ul class="tips">' +
+    R.filter(function (r) { return r.alert && r.alert[0] !== 'info'; }).map(function (r) { return '<li><b>' + esc(r.name) + '.</b> ' + esc(r.alert[1]) + '</li>'; }).join('') +
+    '<li><b>Walt Disney\'s Carousel of Progress.</b> Closed for a reimagining. Disney expects it back in late spring 2027.</li>' +
+    '<li><b>Disney Skyliner.</b> Closed January 24 to 30, 2027 for annual maintenance.</li></ul><p class="small">Checked November 25, 2026. The live status on each ride is the final word on the day.</p></div>' +
+    '</div></section></div>';
+  return h;
+}
+
+/* ---------- method ---------- */
+function viewMethod() {
+  var ex = bySlug['mine-train'], w = ex.r.map(function (v, i) { return v * FACT[i][1]; }), peak = Math.max.apply(null, w), avg = w.reduce(function (a, b) { return a + b; }, 0) / 4.2;
+  var h = '<div class="wrap"><section class="sec"><h2>How the scores work</h2><p>Every ride gets five scores from 0 to 5. They roll up into one number from 0 to 100, and that number sets the level. The scores are a judgment call, made the same way for every ride, from Disney\'s own published details, measured ride statistics and what motion-sensitive and height-wary riders report.</p>' +
+    '<table class="rub"><thead><tr><th></th><th>Motion</th><th>Heights</th></tr></thead><tbody>' +
+    '<tr><th>0</th><td>You are sitting still or walking</td><td>On the ground</td></tr>' +
+    '<tr><th>1</th><td>Slow and steady: a boat, a train, a slow car</td><td>A little elevation or a brief climb with no view down</td></tr>' +
+    '<tr><th>2</th><td>Gentle, with some turning, bouncing or backward travel</td><td>Clearly off the ground, but slow or brief</td></tr>' +
+    '<tr><th>3</th><td>Steady circling, coaster turns, or a car that spins among screens</td><td>Open views from 30 to 60 feet, or sustained height on foot</td></tr>' +
+    '<tr><th>4</th><td>A motion simulator, hard whips, or backward coaster track</td><td>Feet dangling or a tall open lift hill</td></tr>' +
+    '<tr><th>5</th><td>Fast spinning, a centrifuge, or rotation at coaster speed</td><td>Height is the point: a tower, or open rockets on a rooftop</td></tr></tbody></table>' +
+    '<table class="rub"><thead><tr><th></th><th>Drops</th><th>Speed and force</th><th>Dark and startle</th></tr></thead><tbody>' +
+    '<tr><th>1</th><td>A gentle dip</td><td>Walking to jogging pace</td><td>Dim, or one loud moment</td></tr>' +
+    '<tr><th>2</th><td>One short drop, 15 to 30 ft</td><td>Up to about 25 mph</td><td>Dark stretches or loud effects</td></tr>' +
+    '<tr><th>3</th><td>Coaster drops of 30 to 50 ft</td><td>25 to 40 mph</td><td>Dark with startles or spooky scenes</td></tr>' +
+    '<tr><th>4</th><td>A big drop, 50 ft or more</td><td>40 to 65 mph or a hard launch</td><td>Sustained menace in the dark</td></tr>' +
+    '<tr><th>5</th><td>Free fall, repeated</td><td>Going upside down, or 4 G and up</td><td>Not used at Disney World</td></tr></tbody></table>' +
+    '<div class="formula">Score = 20 x (0.8 x worst factor + 0.2 x average)<small>Motion and Heights count in full. Drops and Speed count at 80 percent. Dark and startle counts at 60 percent. The worst factor dominates because one bad trigger is enough to spoil a ride.</small></div>' +
+    '<p class="small">Worked example, ' + esc(ex.name) + ': scores ' + ex.r.join(', ') + ' become weighted ' + w.map(fmtNum).join(', ') + '. Worst is ' + fmtNum(peak) + ', average is ' + (Math.round(avg * 100) / 100) + ', so 20 x (0.8 x ' + fmtNum(peak) + ' + 0.2 x ' + (Math.round(avg * 100) / 100) + ') = ' + Math.round(ex.score) + '.</p></section>';
+  h += '<section class="sec"><h2>The five levels</h2><table class="table"><tbody>';
+  for (var i = 1; i <= 5; i++) h += '<tr><td style="width:44px">' + sign(i) + '</td><td><b style="font:700 20px/1 var(--cond)">' + LV[i].n + '</b><span class="mini">Score ' + LV[i].range + '. ' + LV[i].d + ' ' + R.filter(function (r) { return r.level === i; }).length + ' rides.</span></td></tr>';
+  h += '</tbody></table></section>';
+  h += '<section class="sec"><h2>Where every ride lands</h2><p>Motion runs left to right, heights bottom to top, both rounded to whole numbers. The bottom-left corner is the comfort zone. Tap a sign to open that ride.</p><div class="matrix" role="table" aria-label="Rides by motion and heights score">';
+  for (var hh = 5; hh >= 0; hh--) {
+    h += '<div class="ax">' + hh + '</div>';
+    for (var mm = 0; mm <= 5; mm++) {
+      var cell = R.filter(function (r) { return Math.min(5, Math.floor(r.r[0] + 0.5)) === mm && Math.min(5, Math.floor(r.r[1] + 0.5)) === hh; });
+      h += '<div class="cell">' + cell.map(function (r) { return '<button data-ride="' + r.slug + '" title="' + esc(r.name) + '" aria-label="' + esc(r.name) + ', ' + LV[r.level].n + '">' + sign(r.level, r.rank) + '</button>'; }).join('') + '</div>';
+    }
+  }
+  h += '<div class="ax"></div>'; for (var m2 = 0; m2 <= 5; m2++) h += '<div class="ax">' + m2 + '</div>';
+  h += '</div><p class="axl">Motion score, 0 to 5 across. Heights score, 0 to 5 up the side.</p></section>';
+  h += '<section class="sec"><h2>Where the facts come from</h2><ul class="src">' +
+    '<li><a href="https://cdn1.parksmedia.wdprapps.disney.com/vision-dam/digital/parks-platform/parks-global-assets/disney-world/guest-services/accessibility/sensory-experience/WDW-Sensory-Experience-Details-FINAL-6-26.pdf" target="_blank" rel="noopener">Disney\'s Sensory Experience Details, June 2026</a>: what each ride is flagged for, restraints and ride times.</li>' +
+    '<li><a href="https://disneyworld.disney.go.com/attractions/" target="_blank" rel="noopener">Disney\'s attraction pages and filters</a>, read November 25, 2026: height rules, ride tags, the health advisory list, closures.</li>' +
+    '<li><a href="https://disneyworld.disney.go.com/guest-services/rider-switch/" target="_blank" rel="noopener">Disney\'s Rider Switch page</a>: which rides offer it and how it works.</li>' +
+    '<li><a href="https://themeparks.wiki/" target="_blank" rel="noopener">themeparks.wiki</a>: live wait times, open or closed status and map positions.</li>' +
+    '<li><a href="https://rcdb.com/" target="_blank" rel="noopener">Roller Coaster DataBase</a> and Wikipedia: speeds, heights and drops. Each one-pager says which.</li>' +
+    '<li><a href="https://allears.net/walt-disney-world/wdw-planning/motion-sensitivity" target="_blank" rel="noopener">AllEars motion sensitivity table</a>, <a href="https://wdwprepschool.com/disney-world-motion-sickness/" target="_blank" rel="noopener">WDW Prep School</a>, <a href="https://dadsguidetowdw.com/?p=45858" target="_blank" rel="noopener">Dad\'s Guide to WDW</a> and <a href="https://touringplans.com/blog/?p=240699" target="_blank" rel="noopener">TouringPlans</a>: what motion-sensitive and height-wary riders report, and seat tips.</li>' +
+    '<li><a href="https://plandisney.disney.go.com/question/wondering-high-rows-soarin-go-403774" target="_blank" rel="noopener">planDisney</a>: how high each row of Soarin\' lifts.</li>' +
+    '<li><a href="https://wwwnc.cdc.gov/travel/page/motion-sickness" target="_blank" rel="noopener">CDC travel health: motion sickness</a>: the general advice on the Plan tab.</li>' +
+    '<li><a href="https://www.disneytouristblog.com/disney-world-refurbishments/" target="_blank" rel="noopener">Disney Tourist Blog refurbishment calendar</a>: cross-check on closure dates.</li></ul>' +
+    '<p class="small">Ratings and wording are this guide\'s own. Unofficial, made by a family for a family, and not affiliated with or endorsed by The Walt Disney Company. Ride names belong to their owners. Last checked ' + 'November 25, 2026.</p>' +
+    '<div class="links"><button class="btn" id="printall">Print every one-pager</button><button class="btn ghost" id="offline">Save photos for offline use (5 MB)</button></div></section>';
+  var seen = {}, cr = [];
+  R.forEach(function (r) { if (r.img && !seen[r.img.src]) { seen[r.img.src] = 1; cr.push('<li>' + esc(r.name.replace(/ \((Green|Orange)\)/, '')) + ': <a href="' + esc(r.img.page) + '" target="_blank" rel="noopener">' + esc(r.img.by) + '</a>, ' + esc(r.img.lic) + '</li>'); } });
+  RG.transport.forEach(function (t) { if (t.img) cr.push('<li>' + esc(t.name) + ': <a href="' + esc(t.img.page) + '" target="_blank" rel="noopener">' + esc(t.img.by) + '</a>, ' + esc(t.img.lic) + '</li>'); });
+  h += '<section class="sec"><h2>Photo credits</h2><p class="small">All photos come from Wikimedia Commons under free licenses and were resized. Map tiles are from OpenStreetMap contributors.</p><ul class="cred">' + cr.join('') + '</ul></section></div>';
+  return h;
+}
+
+/* ---------- print ---------- */
+function printRides(list) {
+  var root = $('#printroot'); root.innerHTML = list.map(function (r) { return onepager(r, true); }).join('');
+  document.body.classList.add('printing');
+  var imgs = Array.prototype.slice.call(root.querySelectorAll('img'));
+  var wait = Promise.all(imgs.map(function (im) { return im.complete ? 1 : new Promise(function (ok) { im.onload = im.onerror = ok; }); }));
+  var t = new Promise(function (ok) { setTimeout(ok, 8000); });
+  Promise.race([wait, t]).then(function () { window.print(); });
+}
+window.addEventListener('beforeprint', function () {
+  if (!document.body.classList.contains('printing') && sheetSlug) { $('#printroot').innerHTML = onepager(bySlug[sheetSlug], true); document.body.classList.add('printing'); }
+});
+window.addEventListener('afterprint', function () { $('#printroot').innerHTML = ''; document.body.classList.remove('printing'); });
+
+function saveOffline(btn) {
+  if (!('caches' in window)) { btn.textContent = 'Not supported in this browser'; return; }
+  var urls = ['vendor/leaflet.js', 'vendor/leaflet.css'], seen = {};
+  R.forEach(function (r) { if (r.img && !seen[r.img.src]) { seen[r.img.src] = 1; urls.push(r.img.src); } });
+  RG.transport.forEach(function (t) { if (t.img) urls.push(t.img.src); });
+  var done = 0; btn.disabled = true; btn.textContent = 'Saving 0 of ' + urls.length;
+  caches.open('rg-v1').then(function (c) {
+    return Promise.all(urls.map(function (u) {
+      return c.match(u).then(function (m) { return m || fetch(u).then(function (res) { if (res.ok) return c.put(u, res); }); }).then(function () { done++; btn.textContent = 'Saving ' + done + ' of ' + urls.length; });
+    }));
+  }).then(function () { btn.textContent = 'Saved. Photos and map code now work offline.'; }).catch(function () { btn.disabled = false; btn.textContent = 'Could not save. Try again on Wi-Fi.'; });
+}
+
+/* ---------- shell + routing ---------- */
+var view = null;
+var TABS = [['rides', 'Rides', '<path d="M4 6h16M4 12h16M4 18h10"/>'], ['map', 'Map', '<path d="M12 21s7-6.2 7-11.5a7 7 0 1 0-14 0C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>'], ['plan', 'Plan', '<path d="M6 20V10M12 20V4M18 20v-7"/>'], ['method', 'Method', '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>']];
+function drawTabs() { $('#tabs').innerHTML = TABS.map(function (t) { return '<button data-tab="' + t[0] + '"' + (view === t[0] ? ' aria-current="page"' : '') + '><svg viewBox="0 0 24 24" aria-hidden="true">' + t[2] + '</svg>' + t[1] + '</button>'; }).join(''); }
+function render() {
+  var v = $('#view'); if (mapObj) { mapObj.remove(); mapObj = null; markers = {}; meMarker = null; }
+  v.innerHTML = view === 'map' ? viewMap() : view === 'plan' ? viewPlan() : view === 'method' ? viewMethod() : viewRides();
+  drawTabs(); window.scrollTo(0, 0);
+  if (view === 'rides') { var s = $('#fsort'); if (s) s.value = fSort; drawList(); }
+  if (view === 'map') { drawKey(); initMap(); }
+}
+function route() {
+  var p = location.hash.replace(/^#\/?/, '').split('/');
+  if (p[0] === 'ride' && bySlug[p[1]]) { if (!view) { view = 'rides'; render(); } openSheet(p[1]); return; }
+  closeSheet();
+  var v = ['rides', 'map', 'plan', 'method'].indexOf(p[0]) >= 0 ? p[0] : 'rides';
+  if (v !== view) { view = v; render(); }
+}
+document.addEventListener('click', function (e) {
+  var t = e.target.closest('[data-ride],[data-pin],[data-tab],[data-park],[data-go],[data-print],#sheetback,#livebtn,#locate,#printall,#offline'); if (!t) return;
+  if (t.dataset.pin) { showPin(t.dataset.pin); }
+  else if (t.dataset.ride) { e.preventDefault(); depth++; location.hash = '#/ride/' + t.dataset.ride; }
+  else if (t.dataset.tab) { location.hash = '#/' + t.dataset.tab; }
+  else if (t.dataset.go) { history.replaceState(null, '', '#/ride/' + t.dataset.go); openSheet(t.dataset.go); }
+  else if (t.dataset.print) { printRides([bySlug[t.dataset.print]]); }
+  else if (t.id === 'printall') { printRides(R); }
+  else if (t.id === 'offline') { saveOffline(t); }
+  else if (t.id === 'sheetback') { if (depth > 0) { depth--; history.back(); } else location.hash = '#/' + (view || 'rides'); }
+  else if (t.id === 'livebtn') { loadLive(); }
+  else if (t.id === 'locate') { if (mapObj) { t.textContent = 'Finding you'; mapObj.locate({ enableHighAccuracy: true, timeout: 12000 }); } }
+  else if (t.dataset.park) {
+    var box = t.parentNode.id;
+    if (box === 'pf') { fPark = t.dataset.park; store.set('park', fPark); drawList(); } else { mPark = t.dataset.park; store.set('mpark', mPark); fitPark(); drawKey(); }
+    Array.prototype.forEach.call(t.parentNode.children, function (b) { b.setAttribute('aria-pressed', b === t); });
+  }
+});
+document.addEventListener('change', function (e) {
+  if (e.target.id === 'fopen') { fOpen = e.target.checked; store.set('open', fOpen); drawList(); }
+  if (e.target.id === 'fsort') { fSort = e.target.value; store.set('sort', fSort); drawList(); }
+});
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && sheetSlug) $('#sheetback').click(); });
+window.addEventListener('hashchange', route);
+route(); paintLive(); loadLive();
+setInterval(function () { if (!document.hidden) loadLive(); }, 5 * 60 * 1000);
+document.addEventListener('visibilitychange', function () { if (!document.hidden && (!liveAt || Date.now() - liveAt > 4 * 60 * 1000)) loadLive(); });
+if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(function () {});
+})();
+</script>
+</body>
+</html>
